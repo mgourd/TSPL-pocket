@@ -1,6 +1,18 @@
 TSPL-pocket
 ===========
 
+Forked from @ustcscgy(Interesting that his/her nickname is the same as the name of the  college I belong to).
+
+## What have I done?
+
+- Fixed build command to work with pandoc 2.3.1
+- Fixed broken br tag(by simply changing `<br>` to `<br/>`)
+- Remove ugly title and author in the second page(but the metadata title and author fell back to TSPL so you need to modify the metadata yourself)
+- Centered the cover image
+- Built a new copy of this book
+
+Below is @ustcscgy's README
+
 Re-typesetting [The Scheme Programming Language](http://scheme.com/tspl4/)
 4th edtion into epub format by markdown (pandoc). You can easily have a
 mobi edition for kindle by kindlegen, or a proper-size pdf (this
@@ -14,7 +26,7 @@ word level references are lost, but section level references are remained.
 
 If you don't want to install pandoc which depends on ghc
 (although pandoc is a very excellent software), check
-[this prebuilt epub](https://github.com/ustcscgy/TSPL-pocket/raw/binary/build/TSPL.epub)
+[this prebuilt epub](https://github.com/mgourd/TSPL-pocket/raw/binary/build/TSPL.epub)
 out.
 
 ## TODO
@@ -32,7 +44,7 @@ Pass 2: clean up internal references | **DONE**
 Pass 3: clean up math stuff | **PARTLY DONE** | some complex images
 needed to be converted to tex code
 
-## What have I done?
+## What has I done?
 
 ### Table of Contents
 
