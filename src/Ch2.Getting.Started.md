@@ -70,13 +70,13 @@ Here is a set of expressions, each with Scheme's response. They are
 explained in later sections of this chapter, but for now use them to
 practice interacting with Scheme.
 
-`"hello" `$\Rightarrow$` "hello"`<br>
-`42 `$\Rightarrow$` 42`<br>
-`22/7 `$\Rightarrow$` 22/7`<br>
-`3.141592653 `$\Rightarrow$` 3.141592653`<br>
-`+ `$\Rightarrow$` #<procedure>`<br>
-`(+ 76 31) `$\Rightarrow$` 107`<br>
-`(* -12 10) `$\Rightarrow$` -120`<br>
+`"hello" `$\Rightarrow$` "hello"`<br/>
+`42 `$\Rightarrow$` 42`<br/>
+`22/7 `$\Rightarrow$` 22/7`<br/>
+`3.141592653 `$\Rightarrow$` 3.141592653`<br/>
+`+ `$\Rightarrow$` #<procedure>`<br/>
+`(+ 76 31) `$\Rightarrow$` 107`<br/>
+`(* -12 10) `$\Rightarrow$` -120`<br/>
 `'(a b c d) `$\Rightarrow$` (a b c d)`
 
 Be careful not to miss any single quotes ( `'` ), double quotes, or
@@ -88,10 +88,10 @@ the system might still be waiting for it.
 Here are a few more expressions to try. You can try to figure out on
 your own what they mean or wait to find out later in the chapter.
 
-`(car '(a b c)) `$\Rightarrow$` a`<br>
-`(cdr '(a b c)) `$\Rightarrow$` (b c)`<br>
-`(cons 'a '(b c)) `$\Rightarrow$` (a b c)`<br>
-`(cons (car '(a b c))`<br>
+`(car '(a b c)) `$\Rightarrow$` a`<br/>
+`(cdr '(a b c)) `$\Rightarrow$` (b c)`<br/>
+`(cons 'a '(b c)) `$\Rightarrow$` (a b c)`<br/>
+`(cons (car '(a b c))`<br/>
 `       (cdr '(d e f))) `$\Rightarrow$` (a e f)`
 
 As you can see, Scheme expressions may span more than one line. The
@@ -100,8 +100,8 @@ quotes and parentheses.
 
 Next, let's try defining a procedure.
 
-`(define square`<br>
-`  (lambda (n)`<br>
+`(define square`<br/>
+`  (lambda (n)`<br/>
 `    (* n n)))`
 
 The procedure `square` computes the square *n*^2^ of any number *n*. We
@@ -115,18 +115,18 @@ this is true even for simple arithmetic operations such as `*`.
 
 Try using `square`.
 
-`(square 5) `$\Rightarrow$` 25`<br>
-`(square -200) `$\Rightarrow$` 40000`<br>
-`(square 0.5) `$\Rightarrow$` 0.25`<br>
+`(square 5) `$\Rightarrow$` 25`<br/>
+`(square -200) `$\Rightarrow$` 40000`<br/>
+`(square 0.5) `$\Rightarrow$` 0.25`<br/>
 `(square -1/2) `$\Rightarrow$` 1/4`
 
 Even though the next definition is short, you might enter it into a
 file. Let's assume you call the file "reciprocal.ss."
 
-`(define reciprocal`<br>
-`  (lambda (n)`<br>
-`    (if (= n 0)`<br>
-`        "oops!"`<br>
+`(define reciprocal`<br/>
+`  (lambda (n)`<br/>
+`    (if (= n 0)`<br/>
+`        "oops!"`<br/>
 `        (/ 1 n))))`
 
 This procedure, `reciprocal`, computes the quantity 1/*n* for any number
@@ -137,9 +137,9 @@ to Scheme and try loading your file with the procedure `load`.
 
 Finally, try using the procedure we have just defined.
 
-`(reciprocal 10) `$\Rightarrow$` 1/10`<br>
-`(reciprocal 1/10) `$\Rightarrow$` 10`<br>
-`(reciprocal 0) `$\Rightarrow$` "oops!"`<br>
+`(reciprocal 10) `$\Rightarrow$` 1/10`<br/>
+`(reciprocal 1/10) `$\Rightarrow$` 10`<br/>
+`(reciprocal 0) `$\Rightarrow$` "oops!"`<br/>
 `(reciprocal (reciprocal 1/10)) `$\Rightarrow$` 1/10`
 
 In the next section we will discuss Scheme expressions in more detail.
@@ -160,9 +160,9 @@ Let's discuss numbers in a little more detail. Numbers are constants. If
 you enter a number, Scheme echoes it back to you. The following examples
 show that Scheme supports several types of numbers.
 
-`123456789987654321 `$\Rightarrow$` 123456789987654321`<br>
-`3/4 `$\Rightarrow$` 3/4`<br>
-`2.718281828 `$\Rightarrow$` 2.718281828`<br>
+`123456789987654321 `$\Rightarrow$` 123456789987654321`<br/>
+`3/4 `$\Rightarrow$` 3/4`<br/>
+`2.718281828 `$\Rightarrow$` 2.718281828`<br/>
 `2.2+1.1i `$\Rightarrow$` 2.2+1.1i`
 
 Scheme numbers include exact and inexact integer, rational, real, and
@@ -176,9 +176,9 @@ arithmetic procedures. Each procedure accepts two numeric arguments. The
 expressions below are called *procedure applications*, because they
 specify the application of a procedure to a set of arguments.
 
-`(+ 1/2 1/2) `$\Rightarrow$` 1`<br>
-`(- 1.5 1/2) `$\Rightarrow$` 1.0 `<br>
-`(* 3 1/2) `$\Rightarrow$` 3/2`<br>
+`(+ 1/2 1/2) `$\Rightarrow$` 1`<br/>
+`(- 1.5 1/2) `$\Rightarrow$` 1.0 `<br/>
+`(* 3 1/2) `$\Rightarrow$` 3/2`<br/>
 `(/ 1.5 3/4) `$\Rightarrow$` 2.0`
 
 Scheme employs prefix notation even for common arithmetic operations.
@@ -192,9 +192,9 @@ Procedure applications may be nested, in which case the innermost values
 are computed first. We can thus nest applications of the arithmetic
 procedures given above to evaluate more complicated formulas.
 
-`(+ (+ 2 2) (+ 2 2)) `$\Rightarrow$` 8`<br>
-`(- 2 (* 4 1/3)) `$\Rightarrow$` 2/3`<br>
-`(* 2 (* 2 (* 2 (* 2 2)))) `$\Rightarrow$` 32`<br>
+`(+ (+ 2 2) (+ 2 2)) `$\Rightarrow$` 8`<br/>
+`(- 2 (* 4 1/3)) `$\Rightarrow$` 2/3`<br/>
+`(* 2 (* 2 (* 2 (* 2 2)))) `$\Rightarrow$` 32`<br/>
 `(/ (* 6/7 7/2) (- 4.5 1.5)) `$\Rightarrow$` 1.0`
 
 These examples demonstrate everything you need to use Scheme as a
@@ -229,8 +229,8 @@ want to treat a valid procedure application such as `(+ 3 4)` as a list.
 The answer is that we must tell Scheme explicitly to treat a list as
 data rather than as a procedure application. We do this with `quote`.
 
-`(quote (1 2 3 4 5)) `$\Rightarrow$` (1 2 3 4 5)`<br>
-`(quote ("this" "is" "a" "list")) `$\Rightarrow$` ("this" "is" "a" "list")`<br>
+`(quote (1 2 3 4 5)) `$\Rightarrow$` (1 2 3 4 5)`<br/>
+`(quote ("this" "is" "a" "list")) `$\Rightarrow$` ("this" "is" "a" "list")`<br/>
 `(quote (+ 3 4)) `$\Rightarrow$` (+ 3 4)`
 
 The `quote` forces the list to be treated as data. Try entering the
@@ -242,8 +242,8 @@ Because `quote` is required fairly frequently in Scheme code, Scheme
 recognizes a single quotation mark ( `'` ) preceding an expression as an
 abbreviation for `quote`.
 
-`'(1 2 3 4) `$\Rightarrow$` (1 2 3 4)`<br>
-`'((1 2) (3 4)) `$\Rightarrow$` ((1 2) (3 4))`<br>
+`'(1 2 3 4) `$\Rightarrow$` (1 2 3 4)`<br/>
+`'((1 2) (3 4)) `$\Rightarrow$` ((1 2) (3 4))`<br/>
 `'(/ (* 2 -1) 3) `$\Rightarrow$` (/ (* 2 -1) 3)`
 
 Both forms are referred to as `quote` expressions. We often say an
@@ -287,8 +287,8 @@ the most important features of Scheme.
 
 Numbers and strings may be quoted, too.
 
-`'2 `$\Rightarrow$` 2`<br>
-`'2/3 `$\Rightarrow$` 2/3`<br>
+`'2 `$\Rightarrow$` 2`<br/>
+`'2/3 `$\Rightarrow$` 2/3`<br/>
 `(quote "Hi Mom!") `$\Rightarrow$` "Hi Mom!"`
 
 Numbers and strings are treated as constants in any case, however, so
@@ -302,12 +302,12 @@ derived from operations supported by the first computer on which a Lisp
 language was implemented, the IBM 704.) Each requires a nonempty list as
 its argument.
 
-`(car '(a b c)) `$\Rightarrow$` a`<br>
-`(cdr '(a b c)) `$\Rightarrow$` (b c)`<br>
-`(cdr '(a)) `$\Rightarrow$` () `<br>
-`(car (cdr '(a b c))) `$\Rightarrow$` b`<br>
-`(cdr (cdr '(a b c))) `$\Rightarrow$` (c) `<br>
-`(car '((a b) (c d))) `$\Rightarrow$` (a b)`<br>
+`(car '(a b c)) `$\Rightarrow$` a`<br/>
+`(cdr '(a b c)) `$\Rightarrow$` (b c)`<br/>
+`(cdr '(a)) `$\Rightarrow$` () `<br/>
+`(car (cdr '(a b c))) `$\Rightarrow$` b`<br/>
+`(cdr (cdr '(a b c))) `$\Rightarrow$` (c) `<br/>
+`(car '((a b) (c d))) `$\Rightarrow$` (a b)`<br/>
 `(cdr '((a b) (c d))) `$\Rightarrow$` ((c d))`
 
 The first element of a list is often called the "car" of the list, and
@@ -318,15 +318,15 @@ The procedure `cons` constructs lists. It takes two arguments. The
 second argument is usually a list, and in that case `cons` returns a
 list.
 
-`(cons 'a '()) `$\Rightarrow$` (a)`<br>
-`(cons 'a '(b c)) `$\Rightarrow$` (a b c)`<br>
-`(cons 'a (cons 'b (cons 'c '()))) `$\Rightarrow$` (a b c)`<br>
-`(cons '(a b) '(c d)) `$\Rightarrow$` ((a b) c d) `<br>
-`(car (cons 'a '(b c))) `$\Rightarrow$` a`<br>
-`(cdr (cons 'a '(b c))) `$\Rightarrow$` (b c)`<br>
-`(cons (car '(a b c))`<br>
-`      (cdr '(d e f))) `$\Rightarrow$` (a e f)`<br>
-`(cons (car '(a b c))`<br>
+`(cons 'a '()) `$\Rightarrow$` (a)`<br/>
+`(cons 'a '(b c)) `$\Rightarrow$` (a b c)`<br/>
+`(cons 'a (cons 'b (cons 'c '()))) `$\Rightarrow$` (a b c)`<br/>
+`(cons '(a b) '(c d)) `$\Rightarrow$` ((a b) c d) `<br/>
+`(car (cons 'a '(b c))) `$\Rightarrow$` a`<br/>
+`(cdr (cons 'a '(b c))) `$\Rightarrow$` (b c)`<br/>
+`(cons (car '(a b c))`<br/>
+`      (cdr '(d e f))) `$\Rightarrow$` (a e f)`<br/>
+`(cons (car '(a b c))`<br/>
 `      (cdr '(a b c))) `$\Rightarrow$` (a b c)`
 
 Just as "car" and "cdr" are often used as nouns, "cons" is often used as
@@ -348,8 +348,8 @@ proper list is a proper list.
 An improper list is printed in *dotted-pair notation*, with a period, or
 *dot*, preceding the final element of the list.
 
-`(cons 'a 'b) `$\Rightarrow$` (a . b)`<br>
-`(cdr '(a . b)) `$\Rightarrow$` b`<br>
+`(cons 'a 'b) `$\Rightarrow$` (a . b)`<br/>
+`(cdr '(a . b)) `$\Rightarrow$` b`<br/>
 `(cons 'a '(b . c)) `$\Rightarrow$` (a b . c)`
 
 Because of its printed notation, a pair whose cdr is not a list is often
@@ -362,8 +362,8 @@ write proper lists without dots.
 The procedure `list` is similar to `cons`, except that it takes an
 arbitrary number of arguments and always builds a proper list.
 
-`(list 'a 'b 'c) `$\Rightarrow$` (a b c)`<br>
-`(list 'a) `$\Rightarrow$` (a)`<br>
+`(list 'a 'b 'c) `$\Rightarrow$` (a b c)`<br/>
+`(list 'a) `$\Rightarrow$` (a)`<br/>
 `(list) `$\Rightarrow$` ()`
 
 [Section 6.3] provides more information on lists and
@@ -575,11 +575,11 @@ value 2 when we evaluate `(+ x 3)`. Or, we might want `y` to have the
 value 3 when we evaluate `(+ 2 y)`. The following examples demonstrate
 how to do this using Scheme's `let` syntactic form.
 
-`(let ((x 2))`<br>
-`  (+ x 3)) `$\Rightarrow$` 5 `<br>
-`(let ((y 3))`<br>
-`  (+ 2 y)) `$\Rightarrow$` 5 `<br>
-`(let ((x 2) (y 3))`<br>
+`(let ((x 2))`<br/>
+`  (+ x 3)) `$\Rightarrow$` 5 `<br/>
+`(let ((y 3))`<br/>
+`  (+ 2 y)) `$\Rightarrow$` 5 `<br/>
+`(let ((x 2) (y 3))`<br/>
 `  (+ x y)) `$\Rightarrow$` 5`
 
 The `let` syntactic form includes a list of variable-expression pairs,
@@ -595,16 +595,16 @@ A `let` expression is often used to simplify an expression that would
 contain two identical subexpressions. Doing so also ensures that the
 value of the common subexpression is computed only once.
 
-`(+ (* 4 4) (* 4 4)) `$\Rightarrow$` 32 `<br>
+`(+ (* 4 4) (* 4 4)) `$\Rightarrow$` 32 `<br/>
 `(let ((a (* 4 4))) (+ a a)) `$\Rightarrow$` 32`
 
 Brackets are often used in place of parentheses to delimit the bindings
 of a `let` expression.
 
-`(let ([list1 '(a b c)] [list2 '(d e f)])`<br>
-`  (cons (cons (car list1)`<br>
-`              (car list2))`<br>
-`        (cons (car (cdr list1))`<br>
+`(let ([list1 '(a b c)] [list2 '(d e f)])`<br/>
+`  (cons (cons (car list1)`<br/>
+`              (car list2))`<br/>
+`        (cons (car (cdr list1))`<br/>
 `              (car (cdr list2))))) `$\Rightarrow$` ((a . d) b . e)`
 
 Scheme treats forms enclosed in brackets just like forms enclosed in
@@ -618,18 +618,18 @@ Since expressions in the first position of a procedure application are
 evaluated no differently from other expressions, a `let`-bound variable
 may be used there as well.
 
-`(let ([f +])`<br>
-`  (f 2 3)) `$\Rightarrow$` 5 `<br>
-`(let ([f +] [x 2])`<br>
-`  (f x 3)) `$\Rightarrow$` 5 `<br>
-`(let ([f +] [x 2] [y 3])`<br>
+`(let ([f +])`<br/>
+`  (f 2 3)) `$\Rightarrow$` 5 `<br/>
+`(let ([f +] [x 2])`<br/>
+`  (f x 3)) `$\Rightarrow$` 5 `<br/>
+`(let ([f +] [x 2] [y 3])`<br/>
 `  (f x y)) `$\Rightarrow$` 5`
 
 The variables bound by `let` are visible only within the body of the
 `let`.
 
-`(let ([+ *])`<br>
-`  (+ 2 3)) `$\Rightarrow$` 6 `<br>
+`(let ([+ *])`<br/>
+`  (+ 2 3)) `$\Rightarrow$` 6 `<br/>
 `(+ 2 3) `$\Rightarrow$` 5`
 
 This is fortunate, because we would not want the value of `+` to be the
@@ -637,16 +637,16 @@ multiplication procedure everywhere.
 
 It is possible to nest `let` expressions.
 
-`(let ([a 4] [b -3])`<br>
-`  (let ([a-squared (* a a)]`<br>
-`        [b-squared (* b b)])`<br>
+`(let ([a 4] [b -3])`<br/>
+`  (let ([a-squared (* a a)]`<br/>
+`        [b-squared (* b b)])`<br/>
 `    (+ a-squared b-squared))) `$\Rightarrow$` 25`
 
 When nested `let` expressions bind the same variable, only the binding
 created by the inner `let` is visible within its body.
 
-`(let ([x 1])`<br>
-`  (let ([x (+ x 1)])`<br>
+`(let ([x 1])`<br/>
+`  (let ([x (+ x 1)])`<br/>
 `    (+ x x))) `$\Rightarrow$` 4`
 
 The outer `let` expression binds `x` to 1 within its body, which is the
@@ -672,8 +672,8 @@ Shadowing may be avoided by choosing different names for variables. The
 expression above could be rewritten so that the variable bound by the
 inner `let` is `new-x`.
 
-`(let ([x 1])`<br>
-`  (let ([new-x (+ x 1)])`<br>
+`(let ([x 1])`<br/>
+`  (let ([new-x (+ x 1)])`<br/>
 `    (+ new-x new-x))) `$\Rightarrow$` 4`
 
 Although choosing different names can sometimes prevent confusion,
@@ -701,9 +701,9 @@ any algebraic simplifications.
 Determine the value of the following expression. Explain how you derived
 this value.
 
-`(let ([x 9])`<br>
-`  (* x`<br>
-`     (let ([x (/ x 3)])`<br>
+`(let ([x 9])`<br/>
+`  (* x`<br/>
+`     (let ([x (/ x 3)])`<br/>
 `       (+ x x))))`
 
 #### Exercise 2.4.3
@@ -715,20 +715,20 @@ expression.
 
 *  a*.
 
-`(let ([x 'a] [y 'b])`<br>
-`  (list (let ([x 'c]) (cons x y))`<br>
+`(let ([x 'a] [y 'b])`<br/>
+`  (list (let ([x 'c]) (cons x y))`<br/>
 `        (let ([y 'd]) (cons x y))))`
 
 *  b*.
 
-`(let ([x '((a b) c)])`<br>
-`  (cons (let ([x (cdr x)])`<br>
-`          (car x))`<br>
-`        (let ([x (car x)])`<br>
-`          (cons (let ([x (cdr x)])`<br>
-`                  (car x))`<br>
-`                (cons (let ([x (car x)])`<br>
-`                        x)`<br>
+`(let ([x '((a b) c)])`<br/>
+`  (cons (let ([x (cdr x)])`<br/>
+`          (car x))`<br/>
+`        (let ([x (car x)])`<br/>
+`          (cons (let ([x (cdr x)])`<br/>
+`                  (car x))`<br/>
+`                (cons (let ([x (car x)])`<br/>
+`                        x)`<br/>
 `                      (cdr x))))))`
 
 ### Section 2.5. Lambda Expressions
@@ -776,9 +776,9 @@ values. In this case, `x` is bound to 12, and the value of `(+ x x)` is
 Because procedures are objects, we can establish a procedure as the
 value of a variable and use the procedure more than once.
 
-`(let ([double (lambda (x) (+ x x))])`<br>
-`  (list (double (* 3 4))`<br>
-`        (double (/ 99 11))`<br>
+`(let ([double (lambda (x) (+ x x))])`<br/>
+`  (list (double (* 3 4))`<br/>
+`        (double (/ 99 11))`<br/>
 `        (double (- 2 7)))) `$\Rightarrow$` (24 18 -10)`
 
 Here, we establish a binding for `double` to a procedure, then use this
@@ -789,15 +789,15 @@ passes the actual parameter on to `+`. In general, the actual parameter
 may be any sort of object. Consider, for example, a similar procedure
 that uses `cons` instead of `+`.
 
-`(let ([double-cons (lambda (x) (cons x x))])`<br>
+`(let ([double-cons (lambda (x) (cons x x))])`<br/>
 `  (double-cons 'a)) `$\Rightarrow$` (a . a)`
 
 Noting the similarity between `double` and `double-cons`, you should not
 be surprised to learn that they may be collapsed into a single procedure
 by adding an additional argument.
 
-`(let ([double-any (lambda (f x) (f x x))])`<br>
-`  (list (double-any + 13)`<br>
+`(let ([double-any (lambda (f x) (f x x))])`<br/>
+`  (list (double-any + 13)`<br/>
 `        (double-any cons 'a))) `$\Rightarrow$` (26 (a . a))`
 
 This demonstrates that procedures may accept more than one argument and
@@ -807,8 +807,8 @@ As with `let` expressions, `lambda` expressions become somewhat more
 interesting when they are nested within other `lambda` or `let`
 expressions.
 
-`(let ([x 'a])`<br>
-`  (let ([f (lambda (y) (list x y))])`<br>
+`(let ([x 'a])`<br/>
+`  (let ([f (lambda (y) (list x y))])`<br/>
 `    (f 'b))) `$\Rightarrow$` (a b)`
 
 The occurrence of `x` within the `lambda` expression refers to the `x`
@@ -825,8 +825,8 @@ What happens when the procedure is applied somewhere outside the scope
 of the bindings for variables that occur free within the procedure, as
 in the following expression?
 
-`(let ([f (let ([x 'sam])`<br>
-`           (lambda (y z) (list x y z)))])`<br>
+`(let ([f (let ([x 'sam])`<br/>
+`           (lambda (y z) (list x y z)))])`<br/>
 `  (f 'i 'am)) `$\Rightarrow$` (sam i am)`
 
 The answer is that the same bindings that were in effect when the
@@ -834,9 +834,9 @@ procedure was created are in effect again when the procedure is applied.
 This is true even if another binding for `x` is visible where the
 procedure is applied.
 
-`(let ([f (let ([x 'sam])`<br>
-`           (lambda (y z) (list x y z)))])`<br>
-`  (let ([x 'not-sam])`<br>
+`(let ([f (let ([x 'sam])`<br/>
+`           (lambda (y z) (list x y z)))])`<br/>
+`  (let ([x 'not-sam])`<br/>
 `    (f 'i 'am))) `$\Rightarrow$` (sam i am)`
 
 In both cases, the value of `x` within the procedure named `f` is `sam`.
@@ -855,7 +855,7 @@ In general, any expression of the form
 
 is equivalent to the following.
 
-`((lambda (var ...) body1 body2 ...)`<br>
+`((lambda (var ...) body1 body2 ...)`<br/>
 ` expr ...)`
 
 See [Section 3.1] for more about core forms and
@@ -887,13 +887,13 @@ parameters beyond those that are individually named.
 Let's consider a few examples to help clarify the more general syntax of
 `lambda` expressions.
 
-`(let ([f (lambda x x)])`<br>
-`  (f 1 2 3 4)) `$\Rightarrow$` (1 2 3 4) `<br>
-`(let ([f (lambda x x)])`<br>
-`  (f)) `$\Rightarrow$` () `<br>
-`(let ([g (lambda (x . y) (list x y))])`<br>
-`  (g 1 2 3 4)) `$\Rightarrow$` (1 (2 3 4)) `<br>
-`(let ([h (lambda (x y . z) (list x y z))])`<br>
+`(let ([f (lambda x x)])`<br/>
+`  (f 1 2 3 4)) `$\Rightarrow$` (1 2 3 4) `<br/>
+`(let ([f (lambda x x)])`<br/>
+`  (f)) `$\Rightarrow$` () `<br/>
+`(let ([g (lambda (x . y) (list x y))])`<br/>
+`  (g 1 2 3 4)) `$\Rightarrow$` (1 (2 3 4)) `<br/>
+`(let ([h (lambda (x y . z) (list x y z))])`<br/>
 `  (h 'a 'b 'c 'd)) `$\Rightarrow$` (a b (c d))`
 
 In the first two examples, the procedure named `f` accepts any number of
@@ -914,22 +914,22 @@ Determine the values of the expressions below.
 
 *  a*.
 
-`(let ([f (lambda (x) x)])`<br>
+`(let ([f (lambda (x) x)])`<br/>
 `  (f 'a))`
 
 *  b*.
 
-`(let ([f (lambda x x)])`<br>
+`(let ([f (lambda x x)])`<br/>
 `  (f 'a))`
 
 *  c*.
 
-`(let ([f (lambda (x . y) x)])`<br>
+`(let ([f (lambda (x . y) x)])`<br/>
 `  (f 'a))`
 
 *  d*.
 
-`(let ([f (lambda (x . y) y)])`<br>
+`(let ([f (lambda (x . y) y)])`<br/>
 `  (f 'a))`
 
 #### Exercise 2.5.2
@@ -956,19 +956,19 @@ or `cons`.
 
 *  d*.
 
-`(lambda (x)`<br>
+`(lambda (x)`<br/>
 `  (cons x (f x y)))`
 
 *  e*.
 
-`(lambda (x)`<br>
-`  (let ([z (cons x y)])`<br>
+`(lambda (x)`<br/>
+`  (let ([z (cons x y)])`<br/>
 `    (x y z)))`
 
 *  f*.
 
-`(lambda (x)`<br>
-`  (let ([y (cons x y)])`<br>
+`(lambda (x)`<br/>
+`  (let ([y (cons x y)])`<br/>
 `    (x y z)))`
 
 ### Section 2.6. Top-Level Definitions
@@ -984,21 +984,21 @@ enter, except where shadowed by another binding.
 Let's establish a top-level definition of the `double-any` procedure of
 the last section.
 
-`(define double-any`<br>
-`  (lambda (f x)`<br>
+`(define double-any`<br/>
+`  (lambda (f x)`<br/>
 `    (f x x)))`
 
 The variable `double-any` now has the same status as `cons` or the name
 of any other primitive procedure. We can use `double-any` as if it were
 a primitive procedure.
 
-`(double-any + 10) `$\Rightarrow$` 20`<br>
+`(double-any + 10) `$\Rightarrow$` 20`<br/>
 `(double-any cons 'a) `$\Rightarrow$` (a . a)`
 
 A top-level definition may be established for any object, not just for
 procedures.
 
-`(define sandwich "peanut-butter-and-jelly") `<br>
+`(define sandwich "peanut-butter-and-jelly") `<br/>
 `sandwich `$\Rightarrow$` "peanut-butter-and-jelly"`
 
 Most often, though, top-level definitions are used for procedures.
@@ -1006,8 +1006,8 @@ Most often, though, top-level definitions are used for procedures.
 As suggested above, top-level definitions may be shadowed by `let` or
 `lambda` bindings.
 
-`(define xyz '(x y z))`<br>
-`(let ([xyz '(z y x)])`<br>
+`(define xyz '(x y z))`<br/>
+`(let ([xyz '(z y x)])`<br/>
 `  xyz) `$\Rightarrow$` (z y x)`
 
 Variables with top-level definitions act almost as if they were bound by
@@ -1026,14 +1026,14 @@ compositions of `car` with `cdr` and `cdr` with `cdr`. That is,
 `(cddr list)` is equivalent to `(cdr (cdr list))`. They are easily
 defined as follows.
 
-`(define cadr`<br>
-`  (lambda (x)`<br>
-`    (car (cdr x)))) `<br>
-`(define cddr`<br>
-`  (lambda (x)`<br>
+`(define cadr`<br/>
+`  (lambda (x)`<br/>
+`    (car (cdr x)))) `<br/>
+`(define cddr`<br/>
+`  (lambda (x)`<br/>
 `    (cdr (cdr x))))`
 
-`(cadr '(a b c)) `$\Rightarrow$` b`<br>
+`(cadr '(a b c)) `$\Rightarrow$` b`<br/>
 `(cddr '(a b c)) `$\Rightarrow$` (c)`
 
 Any definition `(define var expr)` where `expr` is a `lambda` expression
@@ -1043,42 +1043,42 @@ parameter specifier, i.e., whether it is a proper list of variables, a
 single variable, or an improper list of variables. A definition of the
 form
 
-`(define var0`<br>
-`  (lambda (var1 ... varn)`<br>
+`(define var0`<br/>
+`  (lambda (var1 ... varn)`<br/>
 `    e1 e2 ...))`
 
 may be abbreviated
 
-`(define (var0 var1 ... varn)`<br>
+`(define (var0 var1 ... varn)`<br/>
 `  e1 e2 ...)`
 
 while
 
-`(define var0`<br>
-`  (lambda varr`<br>
+`(define var0`<br/>
+`  (lambda varr`<br/>
 `    e1 e2 ...))`
 
 may be abbreviated
 
-`(define (var0 . varr)`<br>
+`(define (var0 . varr)`<br/>
 `  e1 e2 ...)`
 
 and
 
-`(define var0`<br>
-`  (lambda (var1 ... varn . varr)`<br>
+`(define var0`<br/>
+`  (lambda (var1 ... varn . varr)`<br/>
 `    e1 e2 ...))`
 
 may be abbreviated
 
-`(define (var0 var1 ... varn . varr)`<br>
+`(define (var0 var1 ... varn . varr)`<br/>
 `  e1 e2 ...)`
 
 For example, the definitions of `cadr` and `list` might be written as
 follows.
 
-`(define (cadr x)`<br>
-`  (car (cdr x))) `<br>
+`(define (cadr x)`<br/>
+`  (car (cdr x))) `<br/>
 `(define (list . x) x)`
 
 This book does not often employ this alternative syntax. Although it is
@@ -1094,8 +1094,8 @@ time it is used. Let's try defining a somewhat more complicated
 variation of `double-any`, one that turns an "ordinary" two-argument
 procedure into a "doubling" one-argument procedure.
 
-`(define doubler`<br>
-`  (lambda (f)`<br>
+`(define doubler`<br/>
+`  (lambda (f)`<br/>
 `    (lambda (x) (f x x))))`
 
 `doubler` accepts one argument, `f`, which must be a procedure that
@@ -1104,15 +1104,15 @@ argument, which it uses for both arguments in an application of `f`. We
 can define, with `doubler`, the simple `double` and `double-cons`
 procedures of the last section.
 
-`(define double (doubler +))`<br>
-`(double 13/2) `$\Rightarrow$` 13 `<br>
-`(define double-cons (doubler cons))`<br>
+`(define double (doubler +))`<br/>
+`(double 13/2) `$\Rightarrow$` 13 `<br/>
+`(define double-cons (doubler cons))`<br/>
 `(double-cons 'a) `$\Rightarrow$` (a . a)`
 
 We can also define `double-any` with `doubler`.
 
-`(define double-any`<br>
-`  (lambda (f x)`<br>
+`(define double-any`<br/>
+`  (lambda (f x)`<br/>
 `    ((doubler f) x)))`
 
 Within `double` and `double-cons`, `f` has the appropriate value, i.e.,
@@ -1135,15 +1135,15 @@ resulting procedure is applied. The following should *not* cause an
 exception, even though we have not yet established a top-level
 definition of `proc2`.
 
-`(define proc1`<br>
-`  (lambda (x y)`<br>
+`(define proc1`<br/>
+`  (lambda (x y)`<br/>
 `    (proc2 y x)))`
 
 If you try to apply `proc1` before defining `proc2`, you should get a
 undefined exception message. Let's give `proc2` a top-level definition
 and try `proc1`.
 
-`(define proc2 cons)`<br>
+`(define proc2 cons)`<br/>
 `(proc1 'a 'b)  (b . a)`
 
 When you define `proc1`, the system accepts your promise to define
@@ -1189,12 +1189,12 @@ its argument *x* is negative, `abs` returns -*x*; otherwise, it returns
 the argument is negative and if so negate it, using the `if` syntactic
 form.
 
-`(define abs`<br>
-`  (lambda (n)`<br>
-`    (if (< n 0)`<br>
-`        (- 0 n)`<br>
-`        n))) `<br>
-`(abs 77) `$\Rightarrow$` 77`<br>
+`(define abs`<br/>
+`  (lambda (n)`<br/>
+`    (if (< n 0)`<br/>
+`        (- 0 n)`<br/>
+`        n))) `<br/>
+`(abs 77) `$\Rightarrow$` 77`<br/>
 `(abs -77) `$\Rightarrow$` 77`
 
 An `if` expression has the form `(if test consequent alternative)`,
@@ -1206,32 +1206,32 @@ expression above, `test` is `(< n 0)`, `consequent` is `(- 0 n)`, and
 The procedure `abs` could be written in a variety of other ways. Any of
 the following are valid definitions of `abs`.
 
-`(define abs`<br>
-`  (lambda (n)`<br>
-`    (if (>= n 0)`<br>
-`        n`<br>
-`        (- 0 n)))) `<br>
-`(define abs`<br>
-`  (lambda (n)`<br>
-`    (if (not (< n 0))`<br>
-`        n`<br>
-`        (- 0 n)))) `<br>
-`(define abs`<br>
-`  (lambda (n)`<br>
-`    (if (or (> n 0) (= n 0))`<br>
-`        n`<br>
-`        (- 0 n)))) `<br>
-`(define abs`<br>
-`  (lambda (n)`<br>
-`    (if (= n 0)`<br>
-`        0`<br>
-`        (if (< n 0)`<br>
-`            (- 0 n)`<br>
-`            n)))) `<br>
-`(define abs`<br>
-`  (lambda (n)`<br>
-`    ((if (>= n 0) + -)`<br>
-`     0`<br>
+`(define abs`<br/>
+`  (lambda (n)`<br/>
+`    (if (>= n 0)`<br/>
+`        n`<br/>
+`        (- 0 n)))) `<br/>
+`(define abs`<br/>
+`  (lambda (n)`<br/>
+`    (if (not (< n 0))`<br/>
+`        n`<br/>
+`        (- 0 n)))) `<br/>
+`(define abs`<br/>
+`  (lambda (n)`<br/>
+`    (if (or (> n 0) (= n 0))`<br/>
+`        n`<br/>
+`        (- 0 n)))) `<br/>
+`(define abs`<br/>
+`  (lambda (n)`<br/>
+`    (if (= n 0)`<br/>
+`        0`<br/>
+`        (if (< n 0)`<br/>
+`            (- 0 n)`<br/>
+`            n)))) `<br/>
+`(define abs`<br/>
+`  (lambda (n)`<br/>
+`    ((if (>= n 0) + -)`<br/>
+`     0`<br/>
 `     n)))`
 
 The first of these definitions asks if `n` is greater than or equal to
@@ -1246,10 +1246,10 @@ Why is `if` a syntactic form and not a procedure? In order to answer
 this, let's revisit the definition of `reciprocal` from the first
 section of this chapter.
 
-`(define reciprocal`<br>
-`  (lambda (n)`<br>
-`    (if (= n 0)`<br>
-`        "oops!"`<br>
+`(define reciprocal`<br/>
+`  (lambda (n)`<br/>
+`    (if (= n 0)`<br/>
+`        "oops!"`<br/>
 `        (/ 1 n))))`
 
 The second argument to the division procedure should not be zero, since
@@ -1273,24 +1273,24 @@ necessary because there are many possible true values. Usually, the
 value of a test expression is one of the two objects `#t`, for true, or
 `#f`, for false.
 
-`(< -1 0) `$\Rightarrow$` #t`<br>
+`(< -1 0) `$\Rightarrow$` #t`<br/>
 `(> -1 0) `$\Rightarrow$` #f`
 
 Every Scheme object, however, is considered to be either true or false
 by conditional expressions and by the procedure `not`. Only `#f` is
 considered false; all other objects are considered true.
 
-`(if #t 'true 'false) `$\Rightarrow$` true`<br>
-`(if #f 'true 'false) `$\Rightarrow$` false`<br>
-`(if '() 'true 'false) `$\Rightarrow$` true`<br>
-`(if 1 'true 'false) `$\Rightarrow$` true`<br>
-`(if '(a b c) 'true 'false) `$\Rightarrow$` true `<br>
-`(not #t) `$\Rightarrow$` #f`<br>
-`(not "false") `$\Rightarrow$` #f`<br>
-`(not #f) `$\Rightarrow$` #t `<br>
-`(or) `$\Rightarrow$` #f`<br>
-`(or #f) `$\Rightarrow$` #f`<br>
-`(or #f #t) `$\Rightarrow$` #t`<br>
+`(if #t 'true 'false) `$\Rightarrow$` true`<br/>
+`(if #f 'true 'false) `$\Rightarrow$` false`<br/>
+`(if '() 'true 'false) `$\Rightarrow$` true`<br/>
+`(if 1 'true 'false) `$\Rightarrow$` true`<br/>
+`(if '(a b c) 'true 'false) `$\Rightarrow$` true `<br/>
+`(not #t) `$\Rightarrow$` #f`<br/>
+`(not "false") `$\Rightarrow$` #f`<br/>
+`(not #f) `$\Rightarrow$` #t `<br/>
+`(or) `$\Rightarrow$` #f`<br/>
+`(or #f) `$\Rightarrow$` #f`<br/>
+`(or #f #t) `$\Rightarrow$` #t`<br/>
 `(or #f 'a #f) `$\Rightarrow$` a`
 
 The `and` syntactic form is similar in form to `or`, but an `and`
@@ -1303,12 +1303,12 @@ are left or the value of a subexpression is false. The value of the
 
 Using `and`, we can define a slightly different version of `reciprocal`.
 
-`(define reciprocal`<br>
-`  (lambda (n)`<br>
-`    (and (not (= n 0))`<br>
-`         (/ 1 n)))) `<br>
-`(reciprocal 3) `$\Rightarrow$` 1/3`<br>
-`(reciprocal 0.5) `$\Rightarrow$` 2.0`<br>
+`(define reciprocal`<br/>
+`  (lambda (n)`<br/>
+`    (and (not (= n 0))`<br/>
+`         (/ 1 n)))) `<br/>
+`(reciprocal 3) `$\Rightarrow$` 1/3`<br/>
+`(reciprocal 0.5) `$\Rightarrow$` 2.0`<br/>
 `(reciprocal 0) `$\Rightarrow$` #f`
 
 In this version, the value is `#f` if `n` is zero and `1/n` otherwise.
@@ -1321,9 +1321,9 @@ procedures listed above are exceptions to this rule. Not all predicates
 require numeric arguments, of course. The predicate `null?` returns true
 if its argument is the empty list `()` and false otherwise.
 
-`(null? '()) `$\Rightarrow$` #t`<br>
-`(null? 'abc) `$\Rightarrow$` #f`<br>
-`(null? '(x y z)) `$\Rightarrow$` #f`<br>
+`(null? '()) `$\Rightarrow$` #t`<br/>
+`(null? 'abc) `$\Rightarrow$` #f`<br/>
+`(null? '(x y z)) `$\Rightarrow$` #f`<br/>
 `(null? (cdddr '(x y z))) `$\Rightarrow$` #t`
 
 The procedure `cdr` must not be passed anything other than a pair, and
@@ -1331,30 +1331,30 @@ an exception is raised when this happens. Common Lisp, however, defines
 `(cdr '())` to be `()`. The following procedure, `lisp-cdr`, is defined
 using `null?` to return `()` if its argument is `()`.
 
-`(define lisp-cdr`<br>
-`  (lambda (x)`<br>
-`    (if (null? x)`<br>
-`        '()`<br>
-`        (cdr x)))) `<br>
-`(lisp-cdr '(a b c)) `$\Rightarrow$` (b c)`<br>
-`(lisp-cdr '(c)) `$\Rightarrow$` ()`<br>
+`(define lisp-cdr`<br/>
+`  (lambda (x)`<br/>
+`    (if (null? x)`<br/>
+`        '()`<br/>
+`        (cdr x)))) `<br/>
+`(lisp-cdr '(a b c)) `$\Rightarrow$` (b c)`<br/>
+`(lisp-cdr '(c)) `$\Rightarrow$` ()`<br/>
 `(lisp-cdr '()) `$\Rightarrow$` ()`
 
 Another useful predicate is `eqv?`, which requires two arguments. If the
 two arguments are equivalent, `eqv?` returns true. Otherwise, `eqv?`
 returns false.
 
-`(eqv? 'a 'a) `$\Rightarrow$` #t`<br>
-`(eqv? 'a 'b) `$\Rightarrow$` #f`<br>
-`(eqv? #f #f) `$\Rightarrow$` #t`<br>
-`(eqv? #t #t) `$\Rightarrow$` #t`<br>
-`(eqv? #f #t) `$\Rightarrow$` #f`<br>
-`(eqv? 3 3) `$\Rightarrow$` #t`<br>
-`(eqv? 3 2) `$\Rightarrow$` #f`<br>
-`(let ([x "Hi Mom!"])`<br>
-`  (eqv? x x)) `$\Rightarrow$` #t`<br>
-`(let ([x (cons 'a 'b)])`<br>
-`  (eqv? x x)) `$\Rightarrow$` #t`<br>
+`(eqv? 'a 'a) `$\Rightarrow$` #t`<br/>
+`(eqv? 'a 'b) `$\Rightarrow$` #f`<br/>
+`(eqv? #f #f) `$\Rightarrow$` #t`<br/>
+`(eqv? #t #t) `$\Rightarrow$` #t`<br/>
+`(eqv? #f #t) `$\Rightarrow$` #f`<br/>
+`(eqv? 3 3) `$\Rightarrow$` #t`<br/>
+`(eqv? 3 2) `$\Rightarrow$` #f`<br/>
+`(let ([x "Hi Mom!"])`<br/>
+`  (eqv? x x)) `$\Rightarrow$` #t`<br/>
+`(let ([x (cons 'a 'b)])`<br/>
+`  (eqv? x x)) `$\Rightarrow$` #t`<br/>
 `(eqv? (cons 'a 'b) (cons 'a 'b)) `$\Rightarrow$` #f`
 
 As you can see, `eqv?` returns true if the arguments are the same
@@ -1368,11 +1368,11 @@ false depending on the type of the object, e.g., `pair?`, `symbol?`,
 `number?`, and `string?`. The predicate `pair?`, for example, returns
 true only if its argument is a pair.
 
-`(pair? '(a . c)) `$\Rightarrow$` #t`<br>
-`(pair? '(a b c)) `$\Rightarrow$` #t`<br>
-`(pair? '()) `$\Rightarrow$` #f`<br>
-`(pair? 'abc) `$\Rightarrow$` #f`<br>
-`(pair? "Hi Mom!") `$\Rightarrow$` #f`<br>
+`(pair? '(a . c)) `$\Rightarrow$` #t`<br/>
+`(pair? '(a b c)) `$\Rightarrow$` #t`<br/>
+`(pair? '()) `$\Rightarrow$` #f`<br/>
+`(pair? 'abc) `$\Rightarrow$` #f`<br/>
+`(pair? "Hi Mom!") `$\Rightarrow$` #f`<br/>
 `(pair? 1234567890) `$\Rightarrow$` #f`
 
 Type predicates are useful for deciding if the argument passed to a
@@ -1380,12 +1380,12 @@ procedure is of the appropriate type. For example, the following version
 of `reciprocal` checks first to see that its argument is a number before
 testing against zero or performing the division.
 
-`(define reciprocal`<br>
-`  (lambda (n)`<br>
-`    (if (and (number? n) (not (= n 0)))`<br>
-`        (/ 1 n)`<br>
-`        "oops!"))) `<br>
-`(reciprocal 2/3) `$\Rightarrow$` 3/2`<br>
+`(define reciprocal`<br/>
+`  (lambda (n)`<br/>
+`    (if (and (number? n) (not (= n 0)))`<br/>
+`        (/ 1 n)`<br/>
+`        "oops!"))) `<br/>
+`(reciprocal 2/3) `$\Rightarrow$` 3/2`<br/>
 `(reciprocal 'a) `$\Rightarrow$` "oops!"`
 
 By the way, the code that uses `reciprocal` must check to see that the
@@ -1393,15 +1393,15 @@ returned value is a number and not a string. To relieve the caller of
 this obligation, it is usually preferable to report the error, using
 `assertion-violation`, as follows.
 
-`(define reciprocal`<br>
-`  (lambda (n)`<br>
-`    (if (and (number? n) (not (= n 0)))`<br>
-`        (/ 1 n)`<br>
-`        (assertion-violation 'reciprocal`<br>
-`          "improper argument"`<br>
-`          n)))) `<br>
-`(reciprocal .25) `$\Rightarrow$` 4.0`<br>
-`(reciprocal 0) `$\Rightarrow$` exception in reciprocal: improper argument 0`<br>
+`(define reciprocal`<br/>
+`  (lambda (n)`<br/>
+`    (if (and (number? n) (not (= n 0)))`<br/>
+`        (/ 1 n)`<br/>
+`        (assertion-violation 'reciprocal`<br/>
+`          "improper argument"`<br/>
+`          n)))) `<br/>
+`(reciprocal .25) `$\Rightarrow$` 4.0`<br/>
+`(reciprocal 0) `$\Rightarrow$` exception in reciprocal: improper argument 0`<br/>
 `(reciprocal 'a) `$\Rightarrow$` exception in reciprocal: improper argument a`
 
 The first argument to `assertion-violation` is a symbol identifying
@@ -1415,27 +1415,27 @@ multiple test and alternative expressions. Consider the following
 definition of `sign`, which returns `-1` for negative inputs, `+1` for
 positive inputs, and `0` for zero.
 
-`(define sign`<br>
-`  (lambda (n)`<br>
-`    (if (< n 0)`<br>
-`        -1`<br>
-`        (if (> n 0)`<br>
-`            +1`<br>
+`(define sign`<br/>
+`  (lambda (n)`<br/>
+`    (if (< n 0)`<br/>
+`        -1`<br/>
+`        (if (> n 0)`<br/>
+`            +1`<br/>
 `            0))))`
 
-`(sign -88.3) `$\Rightarrow$` -1`<br>
-`(sign 0) `$\Rightarrow$` 0`<br>
-`(sign 333333333333) `$\Rightarrow$` 1`<br>
+`(sign -88.3) `$\Rightarrow$` -1`<br/>
+`(sign 0) `$\Rightarrow$` 0`<br/>
+`(sign 333333333333) `$\Rightarrow$` 1`<br/>
 `(* (sign -88.3) (abs -88.3)) `$\Rightarrow$` -88.3`
 
 The two `if` expressions may be replaced by a single `cond` expression
 as follows.
 
-`(define sign`<br>
-`  (lambda (n)`<br>
-`    (cond`<br>
-`      [(< n 0) -1]`<br>
-`      [(> n 0) +1]`<br>
+`(define sign`<br/>
+`  (lambda (n)`<br/>
+`    (cond`<br/>
+`      [(< n 0) -1]`<br/>
+`      [(> n 0) +1]`<br/>
 `      [else 0])))`
 
 A `cond` expression usually takes the form
@@ -1446,11 +1446,11 @@ though the `else` clause may be omitted. This should be done only when
 there is no possibility that all the tests will fail, as in the new
 version of `sign` below.
 
-`(define sign`<br>
-`  (lambda (n)`<br>
-`    (cond`<br>
-`      [(< n 0) -1]`<br>
-`      [(> n 0) +1]`<br>
+`(define sign`<br/>
+`  (lambda (n)`<br/>
+`    (cond`<br/>
+`      [(< n 0) -1]`<br/>
+`      [(> n 0) +1]`<br/>
 `      [(= n 0) 0])))`
 
 These definitions of `sign` do not depend on the order in which the
@@ -1459,17 +1459,17 @@ value of `n`. The following procedure computes the tax on a given amount
 of income in a progressive tax system with breakpoints at 10,000,
 20,000, and 30,000 dollars.
 
-`(define income-tax`<br>
-`  (lambda (income)`<br>
-`    (cond`<br>
-`      [(<= income 10000) (* income .05)]`<br>
-`      [(<= income 20000) (+ (* (- income 10000) .08) 500.00)]`<br>
-`      [(<= income 30000) (+ (* (- income 20000) .13) 1300.00)]`<br>
+`(define income-tax`<br/>
+`  (lambda (income)`<br/>
+`    (cond`<br/>
+`      [(<= income 10000) (* income .05)]`<br/>
+`      [(<= income 20000) (+ (* (- income 10000) .08) 500.00)]`<br/>
+`      [(<= income 30000) (+ (* (- income 20000) .13) 1300.00)]`<br/>
 `      [else (+ (* (- income 30000) .21) 2600.00)])))`
 
-`(income-tax 5000) `$\Rightarrow$` 250.0`<br>
-`(income-tax 15000) `$\Rightarrow$` 900.0`<br>
-`(income-tax 25000) `$\Rightarrow$` 1950.0`<br>
+`(income-tax 5000) `$\Rightarrow$` 250.0`<br/>
+`(income-tax 15000) `$\Rightarrow$` 900.0`<br/>
+`(income-tax 25000) `$\Rightarrow$` 1950.0`<br/>
 `(income-tax 50000) `$\Rightarrow$` 6800.0`
 
 In this example, the order in which the tests are performed, left to
@@ -1487,8 +1487,8 @@ a list. For example, `(length '(a b c))` is 3. Using `length`, define
 the procedure `shorter`, which returns the shorter of two list
 arguments. Have it return the first list if they have the same length.
 
-`(shorter '(a b) '(c d e)) `$\Rightarrow$` (a b)`<br>
-`(shorter '(a b) '(c d)) `$\Rightarrow$` (a b)`<br>
+`(shorter '(a b) '(c d e)) `$\Rightarrow$` (a b)`<br/>
+`(shorter '(a b) '(c d)) `$\Rightarrow$` (a b)`<br/>
 `(shorter '(a b) '(c)) `$\Rightarrow$` (c)`
 
 ### Section 2.8. Simple Recursion
@@ -1508,9 +1508,9 @@ A *recursive procedure* is a procedure that applies itself. Perhaps the
 simplest recursive procedure is the following, which we will call
 `goodbye`.
 
-`(define goodbye`<br>
-`  (lambda ()`<br>
-`    (goodbye))) `<br>
+`(define goodbye`<br/>
+`  (lambda ()`<br/>
+`    (goodbye))) `<br/>
 `(goodbye) `
 
 This procedure takes no arguments and simply applies itself immediately.
@@ -1535,14 +1535,14 @@ the natural recursion step involves the cdr of the argument. A nonempty
 list is one element longer than its cdr, so the recursion step gives the
 value as one more than the length of the cdr of the list.
 
-`(define length`<br>
-`  (lambda (ls)`<br>
-`    (if (null? ls)`<br>
-`        0`<br>
+`(define length`<br/>
+`  (lambda (ls)`<br/>
+`    (if (null? ls)`<br/>
+`        0`<br/>
 `        (+ (length (cdr ls)) 1))))`
 
-`(length '()) `$\Rightarrow$` 0`<br>
-`(length '(a)) `$\Rightarrow$` 1`<br>
+`(length '()) `$\Rightarrow$` 0`<br/>
+`(length '(a)) `$\Rightarrow$` 1`<br/>
 `(length '(a b)) `$\Rightarrow$` 2`
 
 The `if` expression asks if the list is empty. If so, the value is zero.
@@ -1556,15 +1556,15 @@ of a procedure you have defined at top level. If you trace `length` as
 defined above and pass it the argument `'(a b c d)`, you should see
 something like this:
 
-`|(length (a b c d))`<br>
-`| (length (b c d))`<br>
-`| |(length (c d))`<br>
-`| | (length (d))`<br>
-`| | |(length ())`<br>
-`| | |0`<br>
-`| | 1`<br>
-`| |2`<br>
-`| 3`<br>
+`|(length (a b c d))`<br/>
+`| (length (b c d))`<br/>
+`| |(length (c d))`<br/>
+`| | (length (d))`<br/>
+`| | |(length ())`<br/>
+`| | |0`<br/>
+`| | 1`<br/>
+`| |2`<br/>
+`| 3`<br/>
 `|4`
 
 The indentation shows the nesting level of the recursion; the vertical
@@ -1579,16 +1579,16 @@ consisting of the elements (but not the pairs) of the old list. Making a
 copy might be useful if either the original list or the copy might be
 altered via `set-car!` or `set-cdr!`, which we discuss later.
 
-`(list-copy '()) `$\Rightarrow$` ()`<br>
+`(list-copy '()) `$\Rightarrow$` ()`<br/>
 `(list-copy '(a b c)) `$\Rightarrow$` (a b c)`
 
 See if you can define `list-copy` before studying the definition below.
 
-`(define list-copy`<br>
-`  (lambda (ls)`<br>
-`    (if (null? ls)`<br>
-`        '()`<br>
-`        (cons (car ls)`<br>
+`(define list-copy`<br/>
+`  (lambda (ls)`<br/>
+`    (if (null? ls)`<br/>
+`        '()`<br/>
+`        (cons (car ls)`<br/>
 `              (list-copy (cdr ls))))))`
 
 The definition of `list-copy` is similar to the definition of `length`.
@@ -1605,19 +1605,19 @@ object, or `#f` if the object is not found in the list. The value of
 `memv` may be used as a list or as a truth value in a conditional
 expression.
 
-`(define memv`<br>
-`  (lambda (x ls)`<br>
-`    (cond`<br>
-`      [(null? ls) #f]`<br>
-`      [(eqv? (car ls) x) ls]`<br>
+`(define memv`<br/>
+`  (lambda (x ls)`<br/>
+`    (cond`<br/>
+`      [(null? ls) #f]`<br/>
+`      [(eqv? (car ls) x) ls]`<br/>
 `      [else (memv x (cdr ls))])))`
 
-`(memv 'a '(a b b d)) `$\Rightarrow$` (a b b d)`<br>
-`(memv 'b '(a b b d)) `$\Rightarrow$` (b b d)`<br>
-`(memv 'c '(a b b d)) `$\Rightarrow$` #f`<br>
-`(memv 'd '(a b b d)) `$\Rightarrow$` (d)`<br>
-`(if (memv 'b '(a b b d))`<br>
-`    "yes"`<br>
+`(memv 'a '(a b b d)) `$\Rightarrow$` (a b b d)`<br/>
+`(memv 'b '(a b b d)) `$\Rightarrow$` (b b d)`<br/>
+`(memv 'c '(a b b d)) `$\Rightarrow$` #f`<br/>
+`(memv 'd '(a b b d)) `$\Rightarrow$` (d)`<br/>
+`(if (memv 'b '(a b b d))`<br/>
+`    "yes"`<br/>
 `    "no") `$\Rightarrow$` "yes"`
 
 Here there are two conditions to check, hence the use of `cond`. The
@@ -1632,16 +1632,16 @@ procedure `remv` defined below takes two arguments, an object and a
 list. It returns a new list with all occurrences of the object removed
 from the list.
 
-`(define remv`<br>
-`  (lambda (x ls)`<br>
-`    (cond`<br>
-`      [(null? ls) '()]`<br>
-`      [(eqv? (car ls) x) (remv x (cdr ls))]`<br>
+`(define remv`<br/>
+`  (lambda (x ls)`<br/>
+`    (cond`<br/>
+`      [(null? ls) '()]`<br/>
+`      [(eqv? (car ls) x) (remv x (cdr ls))]`<br/>
 `      [else (cons (car ls) (remv x (cdr ls)))])))`
 
-`(remv 'a '(a b b d)) `$\Rightarrow$` (b b d)`<br>
-`(remv 'b '(a b b d)) `$\Rightarrow$` (a d)`<br>
-`(remv 'c '(a b b d)) `$\Rightarrow$` (a b b d)`<br>
+`(remv 'a '(a b b d)) `$\Rightarrow$` (b b d)`<br/>
+`(remv 'b '(a b b d)) `$\Rightarrow$` (a d)`<br/>
+`(remv 'c '(a b b d)) `$\Rightarrow$` (a b b d)`<br/>
 `(remv 'd '(a b b d)) `$\Rightarrow$` (a b b)`
 
 This definition is similar to the definition of `memv` above, except
@@ -1658,11 +1658,11 @@ subtree being the car of the pair and the right subtree being the cdr of
 the pair. It performs a similar operation to `list-copy`, building new
 pairs while leaving the elements (leaves) alone.
 
-`(define tree-copy`<br>
-`  (lambda (tr)`<br>
-`    (if (not (pair? tr))`<br>
-`        tr`<br>
-`        (cons (tree-copy (car tr))`<br>
+`(define tree-copy`<br/>
+`  (lambda (tr)`<br/>
+`    (if (not (pair? tr))`<br/>
+`        tr`<br/>
+`        (cons (tree-copy (car tr))`<br/>
 `              (tree-copy (cdr tr))))))`
 
 `(tree-copy '((a . b) . c)) `$\Rightarrow$` ((a . b) . c)`
@@ -1689,11 +1689,11 @@ repetition called *mapping*. Consider the following procedure,
 `abs-all`, that takes a list of numbers as input and returns a list of
 their absolute values.
 
-`(define abs-all`<br>
-`  (lambda (ls)`<br>
-`    (if (null? ls)`<br>
-`        '()`<br>
-`        (cons (abs (car ls))`<br>
+`(define abs-all`<br/>
+`  (lambda (ls)`<br/>
+`    (if (null? ls)`<br/>
+`        '()`<br/>
+`        (cons (abs (car ls))`<br/>
 `              (abs-all (cdr ls))))))`
 
 `(abs-all '(1 -2 3 -4 5 -6)) `$\Rightarrow$` (1 2 3 4 5 6)`
@@ -1705,8 +1705,8 @@ list is a fairly common thing to do, so Scheme provides the procedure
 `map`, which maps its first argument, a procedure, over its second, a
 list. We can use `map` to define `abs-all`.
 
-`(define abs-all`<br>
-`  (lambda (ls)`<br>
+`(define abs-all`<br/>
+`  (lambda (ls)`<br/>
 `    (map abs ls)))`
 
 We really do not need `abs-all`, however, since the corresponding direct
@@ -1717,7 +1717,7 @@ application of `map` is just as short and perhaps clearer.
 Of course, we can use `lambda` to create the procedure argument to
 `map`, e.g., to square the elements of a list of numbers.
 
-`(map (lambda (x) (* x x))`<br>
+`(map (lambda (x) (* x x))`<br/>
 `     '(1 -3 -5 7)) `$\Rightarrow$` (1 9 25 49)`
 
 We can map a multiple-argument procedure over multiple lists, as in the
@@ -1735,11 +1735,11 @@ to derive, before studying it, the following definition of `map1`, a
 restricted version of `map` that maps a one-argument procedure over a
 single list.
 
-`(define map1`<br>
-`  (lambda (p ls)`<br>
-`    (if (null? ls)`<br>
-`        '()`<br>
-`        (cons (p (car ls))`<br>
+`(define map1`<br/>
+`  (lambda (p ls)`<br/>
+`    (if (null? ls)`<br/>
+`        '()`<br/>
+`        (cons (p (car ls))`<br/>
 `              (map1 p (cdr ls))))))`
 
 `(map1 abs '(1 -2 3 -4 5 -6)) `$\Rightarrow$` (1 2 3 4 5 6)`
@@ -1779,9 +1779,9 @@ bring a nonnegative integer closer to 0.]
 The procedures `list-ref` and `list-tail` return the *n*th element and
 *n*th tail of a list *ls*.
 
-`(list-ref '(1 2 3 4) 0) `$\Rightarrow$` 1`<br>
-`(list-tail '(1 2 3 4) 0) `$\Rightarrow$` (1 2 3 4)`<br>
-`(list-ref '(a short (nested) list) 2) `$\Rightarrow$` (nested)`<br>
+`(list-ref '(1 2 3 4) 0) `$\Rightarrow$` 1`<br/>
+`(list-tail '(1 2 3 4) 0) `$\Rightarrow$` (1 2 3 4)`<br/>
+`(list-ref '(a short (nested) list) 2) `$\Rightarrow$` (nested)`<br/>
 `(list-tail '(a short (nested) list) 2) `$\Rightarrow$` ((nested) list)`
 
 Define both procedures.
@@ -1803,7 +1803,7 @@ other, resulting in indirect recursion. Define the procedures `odd?` and
 `even?`, each in terms of the other. [*Hint*: What should each return
 when its argument is 0?]
 
-`(even? 17) `$\Rightarrow$` #f`<br>
+`(even? 17) `$\Rightarrow$` #f`<br/>
 `(odd? 17) `$\Rightarrow$` #t`
 
 #### Exercise 2.8.7
@@ -1823,12 +1823,12 @@ sometimes useful. Assignments do not create new bindings, as with `let`
 or `lambda`, but rather change the values of existing bindings.
 Assignments are performed with `set!`.
 
-`(define abcde '(a b c d e))`<br>
-`abcde `$\Rightarrow$` (a b c d e)`<br>
-`(set! abcde (cdr abcde))`<br>
-`abcde `$\Rightarrow$` (b c d e)`<br>
-`(let ([abcde '(a b c d e)])`<br>
-`  (set! abcde (reverse abcde))`<br>
+`(define abcde '(a b c d e))`<br/>
+`abcde `$\Rightarrow$` (a b c d e)`<br/>
+`(set! abcde (cdr abcde))`<br/>
+`abcde `$\Rightarrow$` (b c d e)`<br/>
+`(let ([abcde '(a b c d e)])`<br/>
+`  (set! abcde (reverse abcde))`<br/>
 `  abcde) `$\Rightarrow$` (e d c b a)`
 
 Many languages require the use of assignments to initialize local
@@ -1845,14 +1845,14 @@ without assignments. One common practice in some languages is to
 sequence expression evaluation with a series of assignments, as in the
 following procedure that finds the roots of a quadratic equation.
 
-`(define quadratic-formula`<br>
-`  (lambda (a b c)`<br>
-`    (let ([root1 0] [root2 0] [minusb 0] [radical 0] [divisor 0])`<br>
-`      (set! minusb (- 0 b))`<br>
-`      (set! radical (sqrt (- (* b b) (* 4 (* a c)))))`<br>
-`      (set! divisor (* 2 a))`<br>
-`      (set! root1 (/ (+ minusb radical) divisor))`<br>
-`      (set! root2 (/ (- minusb radical) divisor))`<br>
+`(define quadratic-formula`<br/>
+`  (lambda (a b c)`<br/>
+`    (let ([root1 0] [root2 0] [minusb 0] [radical 0] [divisor 0])`<br/>
+`      (set! minusb (- 0 b))`<br/>
+`      (set! radical (sqrt (- (* b b) (* 4 (* a c)))))`<br/>
+`      (set! divisor (* 2 a))`<br/>
+`      (set! root1 (/ (+ minusb radical) divisor))`<br/>
+`      (set! root2 (/ (- minusb radical) divisor))`<br/>
 `      (cons root1 root2))))`
 
 The roots are computed according to the well-known quadratic formula,
@@ -1874,13 +1874,13 @@ For example, the two roots of 2*x*^2^ - 4*x* - 6 are *x* = 3 and *x* =
 The definition above works, but it can be written more clearly without
 the assignments, as shown below.
 
-`(define quadratic-formula`<br>
-`  (lambda (a b c)`<br>
-`    (let ([minusb (- 0 b)]`<br>
-`          [radical (sqrt (- (* b b) (* 4 (* a c))))]`<br>
-`          [divisor (* 2 a)])`<br>
-`      (let ([root1 (/ (+ minusb radical) divisor)]`<br>
-`            [root2 (/ (- minusb radical) divisor)])`<br>
+`(define quadratic-formula`<br/>
+`  (lambda (a b c)`<br/>
+`    (let ([minusb (- 0 b)]`<br/>
+`          [radical (sqrt (- (* b b) (* 4 (* a c))))]`<br/>
+`          [divisor (* 2 a)])`<br/>
+`      (let ([root1 (/ (+ minusb radical) divisor)]`<br/>
+`            [root2 (/ (- minusb radical) divisor)])`<br/>
 `        (cons root1 root2)))))`
 
 In this version, the `set!` expressions are gone, and we are left with
@@ -1897,14 +1897,14 @@ the number of times it is called, storing the count in a variable named
 `cons-count`. It uses `set!` to increment the count; there is no way to
 achieve the same behavior without assignments.
 
-`(define kons-count 0)`<br>
-`(define kons`<br>
-`  (lambda (x y)`<br>
-`    (set! kons-count (+ kons-count 1))`<br>
-`    (cons x y))) `<br>
-`(kons 'a '(b c)) `$\Rightarrow$` (a b c)`<br>
-`kons-count `$\Rightarrow$` 1`<br>
-`(kons 'a (kons 'b (kons 'c '()))) `$\Rightarrow$` (a b c)`<br>
+`(define kons-count 0)`<br/>
+`(define kons`<br/>
+`  (lambda (x y)`<br/>
+`    (set! kons-count (+ kons-count 1))`<br/>
+`    (cons x y))) `<br/>
+`(kons 'a '(b c)) `$\Rightarrow$` (a b c)`<br/>
+`kons-count `$\Rightarrow$` 1`<br/>
+`(kons 'a (kons 'b (kons 'c '()))) `$\Rightarrow$` (a b c)`<br/>
 `kons-count `$\Rightarrow$` 4`
 
 Assignments are commonly used to implement procedures that must maintain
@@ -1913,13 +1913,13 @@ procedure that returns 0 the first time it is called, 1 the second time,
 2 the third time, and so on indefinitely. We could write something
 similar to the definition of `cons-count` above:
 
-`(define next 0)`<br>
-`(define count`<br>
-`  (lambda ()`<br>
-`    (let ([v next])`<br>
-`      (set! next (+ next 1))`<br>
-`      v))) `<br>
-`(count) `$\Rightarrow$` 0`<br>
+`(define next 0)`<br/>
+`(define count`<br/>
+`  (lambda ()`<br/>
+`    (let ([v next])`<br/>
+`      (set! next (+ next 1))`<br/>
+`      v))) `<br/>
+`(count) `$\Rightarrow$` 0`<br/>
 `(count) `$\Rightarrow$` 1`
 
 This solution is somewhat undesirable in that the variable `next` is
@@ -1929,35 +1929,35 @@ inadvertently affecting the behavior of `count` in a subtle way. We can
 solve this problem by `let`-binding `next` outside of the `lambda`
 expression:
 
-`(define count`<br>
-`  (let ([next 0])`<br>
-`    (lambda ()`<br>
-`      (let ([v next])`<br>
-`        (set! next (+ next 1))`<br>
+`(define count`<br/>
+`  (let ([next 0])`<br/>
+`    (lambda ()`<br/>
+`      (let ([v next])`<br/>
+`        (set! next (+ next 1))`<br/>
 `        v))))`
 
 The latter solution also generalizes easily to provide multiple
 counters, each with its own local counter. The procedure `make-counter`,
 defined below, returns a new counting procedure each time it is called.
 
-`(define make-counter`<br>
-`  (lambda ()`<br>
-`    (let ([next 0])`<br>
-`      (lambda ()`<br>
-`        (let ([v next])`<br>
-`          (set! next (+ next 1))`<br>
+`(define make-counter`<br/>
+`  (lambda ()`<br/>
+`    (let ([next 0])`<br/>
+`      (lambda ()`<br/>
+`        (let ([v next])`<br/>
+`          (set! next (+ next 1))`<br/>
 `          v)))))`
 
 Since `next` is bound inside of `make-counter` but outside of the
 procedure returned by `make-counter`, each procedure it returns
 maintains its own unique counter.
 
-`(define count1 (make-counter))`<br>
-`(define count2 (make-counter)) `<br>
-`(count1) `$\Rightarrow$` 0`<br>
-`(count2) `$\Rightarrow$` 0`<br>
-`(count1) `$\Rightarrow$` 1`<br>
-`(count1) `$\Rightarrow$` 2`<br>
+`(define count1 (make-counter))`<br/>
+`(define count2 (make-counter)) `<br/>
+`(count1) `$\Rightarrow$` 0`<br/>
+`(count2) `$\Rightarrow$` 0`<br/>
+`(count1) `$\Rightarrow$` 1`<br/>
+`(count1) `$\Rightarrow$` 2`<br/>
 `(count2) `$\Rightarrow$` 1`
 
 If a state variable must be shared by more than one procedure defined at
@@ -1965,17 +1965,17 @@ top level, but we do not want the state variable to be visible at top
 level, we can use `let` to bind the variable and `set!` to make the
 procedures visible at top level.
 
-`(define shhh #f)`<br>
-`(define tell #f)`<br>
-`(let ([secret 0])`<br>
-`  (set! shhh`<br>
-`    (lambda (message)`<br>
-`      (set! secret message)))`<br>
-`  (set! tell`<br>
-`    (lambda ()`<br>
-`      secret))) `<br>
-`(shhh "sally likes harry")`<br>
-`(tell) `$\Rightarrow$` "sally likes harry"`<br>
+`(define shhh #f)`<br/>
+`(define tell #f)`<br/>
+`(let ([secret 0])`<br/>
+`  (set! shhh`<br/>
+`    (lambda (message)`<br/>
+`      (set! secret message)))`<br/>
+`  (set! tell`<br/>
+`    (lambda ()`<br/>
+`      secret))) `<br/>
+`(shhh "sally likes harry")`<br/>
+`(tell) `$\Rightarrow$` "sally likes harry"`<br/>
 `secret `$\Rightarrow$` exception: variable secret is not bound`
 
 Variables must be defined before they can be assigned, so we define
@@ -1995,13 +1995,13 @@ computed, the value is saved in a local variable so that the computation
 need not be performed again. A boolean flag is used to record whether
 `t` has been invoked and its value saved.
 
-`(define lazy`<br>
-`  (lambda (t)`<br>
-`    (let ([val #f] [flag #f])`<br>
-`      (lambda ()`<br>
-`        (if (not flag)`<br>
-`            (begin (set! val (t))`<br>
-`                   (set! flag #t)))`<br>
+`(define lazy`<br/>
+`  (lambda (t)`<br/>
+`    (let ([val #f] [flag #f])`<br/>
+`      (lambda ()`<br/>
+`        (if (not flag)`<br/>
+`            (begin (set! val (t))`<br/>
+`                   (set! flag #t)))`<br/>
 `        val))))`
 
 The syntactic form `begin`, used here for the first time, evaluates its
@@ -2019,10 +2019,10 @@ computing it more than once.
 The operation of `lazy` can best be illustrated by printing a message
 from within a thunk passed to `lazy`.
 
-`(define p`<br>
-`  (lazy (lambda ()`<br>
-`          (display "Ouch!")`<br>
-`          (newline)`<br>
+`(define p`<br/>
+`  (lazy (lambda ()`<br/>
+`          (display "Ouch!")`<br/>
+`          (newline)`<br/>
 `          "got me")))`
 
 The first time `p` is invoked, the message `Ouch!` is printed and the
@@ -2041,15 +2041,15 @@ the stack; and `pop!`, which removes the object on top of the stack. The
 procedure `make-stack` given below creates a new stack each time it is
 called in a manner similar to `make-counter`.
 
-`(define make-stack`<br>
-`  (lambda ()`<br>
-`    (let ([ls '()])`<br>
-`      (lambda (msg . args)`<br>
-`        (cond`<br>
-`          [(eqv? msg 'empty?) (null? ls)]`<br>
-`          [(eqv? msg 'push!) (set! ls (cons (car args) ls))]`<br>
-`          [(eqv? msg 'top) (car ls)]`<br>
-`          [(eqv? msg 'pop!) (set! ls (cdr ls))]`<br>
+`(define make-stack`<br/>
+`  (lambda ()`<br/>
+`    (let ([ls '()])`<br/>
+`      (lambda (msg . args)`<br/>
+`        (cond`<br/>
+`          [(eqv? msg 'empty?) (null? ls)]`<br/>
+`          [(eqv? msg 'push!) (set! ls (cons (car args) ls))]`<br/>
+`          [(eqv? msg 'top) (car ls)]`<br/>
+`          [(eqv? msg 'pop!) (set! ls (cdr ls))]`<br/>
 `          [else "oops"])))))`
 
 Each stack is stored as a list bound to the variable `ls`; `set!` is
@@ -2060,19 +2060,19 @@ useful here because in the case of `empty?`, `top`, and `pop!` there is
 only one argument (the message), but in the case of `push!` there are
 two (the message and the object to push onto the stack).
 
-`(define stack1 (make-stack))`<br>
-`(define stack2 (make-stack))`<br>
-`(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#t #t) `<br>
-`(stack1 'push! 'a)`<br>
-`(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#f #t) `<br>
-`(stack1 'push! 'b)`<br>
-`(stack2 'push! 'c)`<br>
-`(stack1 'top) `$\Rightarrow$` b`<br>
-`(stack2 'top) `$\Rightarrow$` c `<br>
-`(stack1 'pop!)`<br>
-`(stack1 'top) `$\Rightarrow$` a`<br>
-`(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#f #f) `<br>
-`(stack1 'pop!)`<br>
+`(define stack1 (make-stack))`<br/>
+`(define stack2 (make-stack))`<br/>
+`(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#t #t) `<br/>
+`(stack1 'push! 'a)`<br/>
+`(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#f #t) `<br/>
+`(stack1 'push! 'b)`<br/>
+`(stack2 'push! 'c)`<br/>
+`(stack1 'top) `$\Rightarrow$` b`<br/>
+`(stack2 'top) `$\Rightarrow$` c `<br/>
+`(stack1 'pop!)`<br/>
+`(stack1 'top) `$\Rightarrow$` a`<br/>
+`(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#f #f) `<br/>
+`(stack1 'pop!)`<br/>
 `(list (stack1 'empty?) (stack2 'empty?)) `$\Rightarrow$` (#t #f)`
 
 As with the counters created by `make-counter`, the state maintained by
@@ -2090,10 +2090,10 @@ In addition to changing the values of variables, we can also change the
 values of the car and cdr fields of a pair, using the procedures
 `set-car!` and `set-cdr!`.
 
-`(define p (list 1 2 3))`<br>
-`(set-car! (cdr p) 'two)`<br>
-`p `$\Rightarrow$` (1 two 3)`<br>
-`(set-cdr! p '())`<br>
+`(define p (list 1 2 3))`<br/>
+`(set-car! (cdr p) 'two)`<br/>
+`p `$\Rightarrow$` (1 two 3)`<br/>
+`(set-cdr! p '())`<br/>
 `p `$\Rightarrow$` (1)`
 
 We can use these operators to define a queue data type, which is like a
@@ -2113,37 +2113,37 @@ constructs a queue; `putq!`, which adds an element to the end of a
 queue; `getq`, which retrieves the element at the front of a queue; and
 `delq!`, which removes the element at the front of a queue.
 
-`(define make-queue`<br>
-`  (lambda ()`<br>
-`    (let ([end (cons 'ignored '())])`<br>
-`      (cons end end)))) `<br>
-`(define putq!`<br>
-`  (lambda (q v)`<br>
-`    (let ([end (cons 'ignored '())])`<br>
-`      (set-car! (cdr q) v)`<br>
-`      (set-cdr! (cdr q) end)`<br>
-`      (set-cdr! q end)))) `<br>
-`(define getq`<br>
-`  (lambda (q)`<br>
-`    (car (car q)))) `<br>
-`(define delq!`<br>
-`  (lambda (q)`<br>
+`(define make-queue`<br/>
+`  (lambda ()`<br/>
+`    (let ([end (cons 'ignored '())])`<br/>
+`      (cons end end)))) `<br/>
+`(define putq!`<br/>
+`  (lambda (q v)`<br/>
+`    (let ([end (cons 'ignored '())])`<br/>
+`      (set-car! (cdr q) v)`<br/>
+`      (set-cdr! (cdr q) end)`<br/>
+`      (set-cdr! q end)))) `<br/>
+`(define getq`<br/>
+`  (lambda (q)`<br/>
+`    (car (car q)))) `<br/>
+`(define delq!`<br/>
+`  (lambda (q)`<br/>
 `    (set-car! q (cdr (car q)))))`
 
 All are simple operations except for `putq!`, which modifies the end
 pair to contain the new value and adds a new end pair.
 
-`(define myq (make-queue)) `<br>
-`(putq! myq 'a)`<br>
-`(putq! myq 'b)`<br>
-`(getq myq) `$\Rightarrow$` a`<br>
-`(delq! myq)`<br>
-`(getq myq) `$\Rightarrow$` b`<br>
-`(delq! myq)`<br>
-`(putq! myq 'c)`<br>
-`(putq! myq 'd)`<br>
-`(getq myq) `$\Rightarrow$` c`<br>
-`(delq! myq)`<br>
+`(define myq (make-queue)) `<br/>
+`(putq! myq 'a)`<br/>
+`(putq! myq 'b)`<br/>
+`(getq myq) `$\Rightarrow$` a`<br/>
+`(delq! myq)`<br/>
+`(getq myq) `$\Rightarrow$` b`<br/>
+`(delq! myq)`<br/>
+`(putq! myq 'c)`<br/>
+`(putq! myq 'd)`<br/>
+`(getq myq) `$\Rightarrow$` c`<br/>
+`(delq! myq)`<br/>
 `(getq myq) `$\Rightarrow$` d`
 
 #### Exercise 2.9.1
@@ -2166,16 +2166,16 @@ stack; `(stack 'ref 0)` should be equivalent to `(stack 'top)`.
 `(stack 'set! i v)` should change the `i`th element from the top of the
 stack to `v`.
 
-`(define stack (make-stack)) `<br>
-`(stack 'push! 'a)`<br>
-`(stack 'push! 'b)`<br>
-`(stack 'push! 'c) `<br>
-`(stack 'ref 0) `$\Rightarrow$` c`<br>
-`(stack 'ref 2) `$\Rightarrow$` a`<br>
-`(stack 'set! 1 'd)`<br>
-`(stack 'ref 1) `$\Rightarrow$` d`<br>
-`(stack 'top) `$\Rightarrow$` c`<br>
-`(stack 'pop!)`<br>
+`(define stack (make-stack)) `<br/>
+`(stack 'push! 'a)`<br/>
+`(stack 'push! 'b)`<br/>
+`(stack 'push! 'c) `<br/>
+`(stack 'ref 0) `$\Rightarrow$` c`<br/>
+`(stack 'ref 2) `$\Rightarrow$` a`<br/>
+`(stack 'set! 1 'd)`<br/>
+`(stack 'ref 1) `$\Rightarrow$` d`<br/>
+`(stack 'top) `$\Rightarrow$` c`<br/>
+`(stack 'pop!)`<br/>
 `(stack 'top) `$\Rightarrow$` d`
 
 [*Hint*: Use `list-ref` to implement `ref` and `list-tail` with
@@ -2222,8 +2222,8 @@ Using `set-cdr!`, it is possible to create *cyclic lists*. For example,
 the following expression evaluates to a list whose car is the symbol `a`
 and whose cdr is the list itself.
 
-`(let ([ls (cons 'a '())])`<br>
-`  (set-cdr! ls ls)`<br>
+`(let ([ls (cons 'a '())])`<br/>
+`  (set-cdr! ls ls)`<br/>
 `  ls)`
 
 What happens when you enter the above expression during an interactive
@@ -2238,11 +2238,11 @@ proper list and `#f` otherwise (see [Section 6.3]).
 It should return `#f` for cyclic lists as well as for lists terminated
 by objects other than `()`.
 
-`(list? '()) `$\Rightarrow$` #t`<br>
-`(list? '(1 2 3)) `$\Rightarrow$` #t`<br>
-`(list? '(a . b)) `$\Rightarrow$` #f`<br>
-`(list? (let ([ls (cons 'a '())])`<br>
-`         (set-cdr! ls ls)`<br>
+`(list? '()) `$\Rightarrow$` #t`<br/>
+`(list? '(1 2 3)) `$\Rightarrow$` #t`<br/>
+`(list? '(a . b)) `$\Rightarrow$` #f`<br/>
+`(list? (let ([ls (cons 'a '())])`<br/>
+`         (set-cdr! ls ls)`<br/>
 `         ls)) `$\Rightarrow$` #f`
 
 First write a simplified version of `list?` that does not handle cyclic

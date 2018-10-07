@@ -65,11 +65,11 @@ The following example defines `let*` as a syntactic extension,
 specifying the transformer with `syntax-rules` (see
 [Section 8.2]).
 
-`(define-syntax let*`<br>
-`  (syntax-rules ()`<br>
-`    [(_ () b1 b2 ...) (let () b1 b2 ...)]`<br>
-`    [(_ ((i1 e1) (i2 e2) ...) b1 b2 ...)`<br>
-`     (let ([i1 e1])`<br>
+`(define-syntax let*`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ () b1 b2 ...) (let () b1 b2 ...)]`<br/>
+`    [(_ ((i1 e1) (i2 e2) ...) b1 b2 ...)`<br/>
+`     (let ([i1 e1])`<br/>
 `       (let* ([i2 e2] ...) b1 b2 ...))]))`
 
 All bindings established by a set of internal definitions, whether
@@ -77,13 +77,13 @@ keyword or variable definitions, are visible everywhere within the
 immediately enclosing body, including within the definitions themselves.
 For example, the expression
 
-`(let ()`<br>
-`  (define even?`<br>
-`    (lambda (x)`<br>
-`      (or (= x 0) (odd? (- x 1)))))`<br>
-`  (define-syntax odd?`<br>
-`    (syntax-rules ()`<br>
-`      [(_ x) (not (even? x))]))`<br>
+`(let ()`<br/>
+`  (define even?`<br/>
+`    (lambda (x)`<br/>
+`      (or (= x 0) (odd? (- x 1)))))`<br/>
+`  (define-syntax odd?`<br/>
+`    (syntax-rules ()`<br/>
+`      [(_ x) (not (even? x))]))`<br/>
 `  (even? 10))`
 
 is valid and should evaluate to `#t`.
@@ -102,11 +102,11 @@ An implication of the left-to-right processing order is that one
 internal definition can affect whether a subsequent form is also a
 definition. For example, the expression
 
-`(let ()`<br>
-`  (define-syntax bind-to-zero`<br>
-`    (syntax-rules ()`<br>
-`      [(_ id) (define id 0)]))`<br>
-`  (bind-to-zero x)`<br>
+`(let ()`<br/>
+`  (define-syntax bind-to-zero`<br/>
+`    (syntax-rules ()`<br/>
+`      [(_ id) (define id 0)]))`<br/>
+`  (bind-to-zero x)`<br/>
 `  x)`
 
 evaluates to `0`, regardless of any binding for `bind-to-zero` that
@@ -132,17 +132,17 @@ if they appeared in place of the `let-syntax` or `letrec-syntax` form.
 The following example highlights how `let-syntax` and `letrec-syntax`
 differ.
 
-`(let ([f (lambda (x) (+ x 1))])`<br>
-`  (let-syntax ([f (syntax-rules ()`<br>
-`                       [(_ x) x])]`<br>
-`               [g (syntax-rules ()`<br>
-`                       [(_ x) (f x)])])`<br>
-`    (list (f 1) (g 1)))) `$\Rightarrow$` (1 2) `<br>
-`(let ([f (lambda (x) (+ x 1))])`<br>
-`  (letrec-syntax ([f (syntax-rules ()`<br>
-`                       [(_ x) x])]`<br>
-`                  [g (syntax-rules ()`<br>
-`                       [(_ x) (f x)])])`<br>
+`(let ([f (lambda (x) (+ x 1))])`<br/>
+`  (let-syntax ([f (syntax-rules ()`<br/>
+`                       [(_ x) x])]`<br/>
+`               [g (syntax-rules ()`<br/>
+`                       [(_ x) (f x)])])`<br/>
+`    (list (f 1) (g 1)))) `$\Rightarrow$` (1 2) `<br/>
+`(let ([f (lambda (x) (+ x 1))])`<br/>
+`  (letrec-syntax ([f (syntax-rules ()`<br/>
+`                       [(_ x) x])]`<br/>
+`                  [g (syntax-rules ()`<br/>
+`                       [(_ x) (f x)])])`<br/>
 `    (list (f 1) (g 1)))) `$\Rightarrow$` (1 1)`
 
 The two expressions are identical except that the `let-syntax` form in
@@ -266,11 +266,11 @@ and templates.
 
 The definition of `or` below demonstrates the use of `syntax-rules`.
 
-`(define-syntax or`<br>
-`  (syntax-rules ()`<br>
-`    [(_) #f]`<br>
-`    [(_ e) e]`<br>
-`    [(_ e1 e2 e3 ...)`<br>
+`(define-syntax or`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_) #f]`<br/>
+`    [(_ e) e]`<br/>
+`    [(_ e1 e2 e3 ...)`<br/>
 `     (let ([t e1]) (if t t (or e2 e3 ...)))]))`
 
 The input patterns specify that the input must consist of the keyword
@@ -292,19 +292,19 @@ the transformer and not within subforms of the input. Similarly, the
 references to the identifiers `let` and `if` are unaffected by any
 bindings present in the context of the input.
 
-`(let ([if #f])`<br>
-`  (let ([t 'okay])`<br>
+`(let ([if #f])`<br/>
+`  (let ([t 'okay])`<br/>
 `    (or if t))) `$\Rightarrow$` okay`
 
 This expression is transformed during expansion to the equivalent of the
 expression below.
 
-`((lambda (if1)`<br>
-`   ((lambda (t1)`<br>
-`      ((lambda (t2)`<br>
-`         (if t2 t2 t1))`<br>
-`       if1))`<br>
-`    'okay))`<br>
+`((lambda (if1)`<br/>
+`   ((lambda (t1)`<br/>
+`      ((lambda (t2)`<br/>
+`         (if t2 t2 t1))`<br/>
+`       if1))`<br/>
+`    'okay))`<br/>
 ` #f) `$\Rightarrow$` okay`
 
 In this sample expansion, `if1`, `t1`, and `t2` represent identifiers to
@@ -317,11 +317,11 @@ not support the auxiliary keyword `=>`) demonstrates how auxiliary
 keywords such as `else` are recognized in the input to a transformer,
 via inclusion in the list of literals.
 
-`(define-syntax cond`<br>
-`  (syntax-rules (else)`<br>
-`    [(_ (else e1 e2 ...)) (begin e1 e2 ...)]`<br>
-`    [(_ (e0 e1 e2 ...)) (if e0 (begin e1 e2 ...))]`<br>
-`    [(_ (e0 e1 e2 ...) c1 c2 ...)`<br>
+`(define-syntax cond`<br/>
+`  (syntax-rules (else)`<br/>
+`    [(_ (else e1 e2 ...)) (begin e1 e2 ...)]`<br/>
+`    [(_ (e0 e1 e2 ...)) (if e0 (begin e1 e2 ...))]`<br/>
+`    [(_ (e0 e1 e2 ...) c1 c2 ...)`<br/>
 `     (if e0 (begin e1 e2 ...) (cond c1 c2 ...))]))`
 
 **syntax**: `_` \
@@ -343,8 +343,8 @@ When a keyword is bound to a transformer produced by the first form of
 `identifier-syntax`, references to the keyword within the scope of the
 binding are replaced by `tmpl`.
 
-`(let ()`<br>
-`  (define-syntax a (identifier-syntax car))`<br>
+`(let ()`<br/>
+`  (define-syntax a (identifier-syntax car))`<br/>
 `  (list (a '(1 2 3)) a)) `$\Rightarrow$` (1 #<procedure>)`
 
 With the first form of `identifier-syntax`, an apparent assignment of
@@ -352,13 +352,13 @@ the associated keyword with `set!` is a syntax violation. The second,
 more general, form of `identifier-syntax` permits the transformer to
 specify what happens when `set!` is used.
 
-`(let ([ls (list 0)])`<br>
-`  (define-syntax a`<br>
-`    (identifier-syntax`<br>
-`      [id (car ls)]`<br>
-`      [(set! id e) (set-car! ls e)]))`<br>
-`  (let ([before a])`<br>
-`    (set! a 1)`<br>
+`(let ([ls (list 0)])`<br/>
+`  (define-syntax a`<br/>
+`    (identifier-syntax`<br/>
+`      [id (car ls)]`<br/>
+`      [(set! id e) (set-car! ls e)]))`<br/>
+`  (let ([before a])`<br/>
+`    (set! a 1)`<br/>
 `    (list before a ls))) `$\Rightarrow$` (0 1 (1))`
 
 A definition of `identifier-syntax` in terms of
@@ -415,7 +415,7 @@ of additional forms and procedures that provide added functionality.
 Each `literal` must be an identifier. Each `clause` must take one of the
 following two forms.
 
-`(pattern output-expression)`<br>
+`(pattern output-expression)`<br/>
 `(pattern fender output-expression)`
 
 `syntax-case` patterns may be in any of the forms described in
@@ -477,12 +477,12 @@ The definition of `or` below is equivalent to the one given in
 [Section 8.2] except that it employs `syntax-case` and
 `syntax` in place of `syntax-rules`.
 
-`(define-syntax or`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_) #'#f]`<br>
-`      [(_ e) #'e]`<br>
-`      [(_ e1 e2 e3 ...)`<br>
+`(define-syntax or`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_) #'#f]`<br/>
+`      [(_ e) #'e]`<br/>
+`      [(_ e1 e2 e3 ...)`<br/>
 `       #'(let ([t e1]) (if t t (or e2 e3 ...)))])))`
 
 In this version, the `lambda` expression that produces the transformer
@@ -492,12 +492,12 @@ making the `lambda` expression and `syntax` expressions explicit. This
 observation leads to the following definition of `syntax-rules` in terms
 of `syntax-case`.
 
-`(define-syntax syntax-rules`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ (i ...) ((keyword . pattern) template) ...)`<br>
-`       #'(lambda (x)`<br>
-`           (syntax-case x (i ...)`<br>
+`(define-syntax syntax-rules`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ (i ...) ((keyword . pattern) template) ...)`<br/>
+`       #'(lambda (x)`<br/>
+`           (syntax-case x (i ...)`<br/>
 `             [(_ . pattern) #'template] ...))])))`
 
 An underscore is used in place of each `keyword` since the first
@@ -519,16 +519,16 @@ cannot be written easily or at all with `syntax-rules` (see
 subforms of an input form are identifiers, as in the definition of
 unnamed `let` below.
 
-`(define-syntax let`<br>
-`  (lambda (x)`<br>
-`    (define ids?`<br>
-`      (lambda (ls)`<br>
-`        (or (null? ls)`<br>
-`            (and (identifier? (car ls))`<br>
-`                 (ids? (cdr ls))))))`<br>
-`    (syntax-case x ()`<br>
-`      [(_ ((i e) ...) b1 b2 ...)`<br>
-`       (ids? #'(i ...))`<br>
+`(define-syntax let`<br/>
+`  (lambda (x)`<br/>
+`    (define ids?`<br/>
+`      (lambda (ls)`<br/>
+`        (or (null? ls)`<br/>
+`            (and (identifier? (car ls))`<br/>
+`                 (ids? (cdr ls))))))`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ ((i e) ...) b1 b2 ...)`<br/>
+`       (ids? #'(i ...))`<br/>
 `       #'((lambda (i ...) b1 b2 ...) e ...)])))`
 
 Syntactic extensions ordinarily take the form `(keyword subform ...)`,
@@ -538,14 +538,14 @@ below may be used both as an identifier (in which case it expands into a
 call to `car`) or as a structured form (in which case it expands into a
 call to `set-car!`).
 
-`(let ([p (cons 0 #f)])`<br>
-`  (define-syntax pcar`<br>
-`    (lambda (x)`<br>
-`      (syntax-case x ()`<br>
-`        [_ (identifier? x) #'(car p)]`<br>
-`        [(_ e) #'(set-car! p e)])))`<br>
-`  (let ([a pcar])`<br>
-`    (pcar 1)`<br>
+`(let ([p (cons 0 #f)])`<br/>
+`  (define-syntax pcar`<br/>
+`    (lambda (x)`<br/>
+`      (syntax-case x ()`<br/>
+`        [_ (identifier? x) #'(car p)]`<br/>
+`        [(_ e) #'(set-car! p e)])))`<br/>
+`  (let ([a pcar])`<br/>
+`    (pcar 1)`<br/>
 `    (list a pcar))) `$\Rightarrow$` (0 1)`
 
 The fender `(identifier? x)` is used to recognize the singleton
@@ -589,21 +589,21 @@ simplified version of `cond` with `syntax-rules`, except that `else` is
 recognized via an explicit call to `free-identifier?` within a fender
 rather than via inclusion in the literals list.
 
-`(define-syntax cond`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ (e0 e1 e2 ...))`<br>
-`       (and (identifier? #'e0) (free-identifier=? #'e0 #'else))`<br>
-`       #'(begin e1 e2 ...)]`<br>
-`      [(_ (e0 e1 e2 ...)) #'(if e0 (begin e1 e2 ...))]`<br>
-`      [(_ (e0 e1 e2 ...) c1 c2 ...)`<br>
+`(define-syntax cond`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ (e0 e1 e2 ...))`<br/>
+`       (and (identifier? #'e0) (free-identifier=? #'e0 #'else))`<br/>
+`       #'(begin e1 e2 ...)]`<br/>
+`      [(_ (e0 e1 e2 ...)) #'(if e0 (begin e1 e2 ...))]`<br/>
+`      [(_ (e0 e1 e2 ...) c1 c2 ...)`<br/>
 `       #'(if e0 (begin e1 e2 ...) (cond c1 c2 ...))])))`
 
 With either definition of `cond`, `else` is not recognized as an
 auxiliary keyword if an enclosing lexical binding for `else` exists. For
 example,
 
-`(let ([else #f])`<br>
+`(let ([else #f])`<br/>
 `  (cond [else (write "oops")]))`
 
 does *not* write `"oops"`, since `else` is bound lexically and is
@@ -612,22 +612,22 @@ therefore not the same `else` that appears in the definition of `cond`.
 The following definition of unnamed `let` uses `bound-identifier=?` to
 detect duplicate identifiers.
 
-`(define-syntax let`<br>
-`  (lambda (x)`<br>
-`    (define ids?`<br>
-`      (lambda (ls)`<br>
-`        (or (null? ls)`<br>
-`            (and (identifier? (car ls)) (ids? (cdr ls))))))`<br>
-`    (define unique-ids?`<br>
-`      (lambda (ls)`<br>
-`        (or (null? ls)`<br>
-`            (and (not (memp`<br>
-`                        (lambda (x) (bound-identifier=? x (car ls)))`<br>
-`                        (cdr ls)))`<br>
-`                 (unique-ids? (cdr ls))))))`<br>
-`    (syntax-case x ()`<br>
-`      [(_ ((i e) ...) b1 b2 ...)`<br>
-`       (and (ids? #'(i ...)) (unique-ids? #'(i ...)))`<br>
+`(define-syntax let`<br/>
+`  (lambda (x)`<br/>
+`    (define ids?`<br/>
+`      (lambda (ls)`<br/>
+`        (or (null? ls)`<br/>
+`            (and (identifier? (car ls)) (ids? (cdr ls))))))`<br/>
+`    (define unique-ids?`<br/>
+`      (lambda (ls)`<br/>
+`        (or (null? ls)`<br/>
+`            (and (not (memp`<br/>
+`                        (lambda (x) (bound-identifier=? x (car ls)))`<br/>
+`                        (cdr ls)))`<br/>
+`                 (unique-ids? (cdr ls))))))`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ ((i e) ...) b1 b2 ...)`<br/>
+`       (and (ids? #'(i ...)) (unique-ids? #'(i ...)))`<br/>
 `       #'((lambda (i ...) b1 b2 ...) e ...)])))`
 
 With the definition of `let` above, the expression
@@ -636,11 +636,11 @@ With the definition of `let` above, the expression
 
 is a syntax violation, whereas
 
-`(let ([a 0])`<br>
-`  (let-syntax ([dolet (lambda (x)`<br>
-`                        (syntax-case x ()`<br>
-`                          [(_ b)`<br>
-`                           #'(let ([a 3] [b 4]) (+ a b))]))])`<br>
+`(let ([a 0])`<br/>
+`  (let-syntax ([dolet (lambda (x)`<br/>
+`                        (syntax-case x ()`<br/>
+`                          [(_ b)`<br/>
+`                           #'(let ([a 3] [b 4]) (+ a b))]))])`<br/>
 `    (dolet a)))`
 
 evaluates to `7` since the identifier `a` introduced by `dolet` and the
@@ -675,33 +675,33 @@ body.
 `with-syntax` may be defined as a syntactic extension in terms of
 `syntax-case`.
 
-`(define-syntax with-syntax`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ ((p e) ...) b1 b2 ...)`<br>
-`       #'(syntax-case (list e ...) ()`<br>
+`(define-syntax with-syntax`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ ((p e) ...) b1 b2 ...)`<br/>
+`       #'(syntax-case (list e ...) ()`<br/>
 `           [(p ...) (let () b1 b2 ...)])])))`
 
 The following definition of full `cond` demonstrates the use of
 `with-syntax` to support transformers that employ recursion internally
 to construct their output.
 
-`(define-syntax cond`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ c1 c2 ...)`<br>
-`       (let f ([c1 #'c1] [cmore #'(c2 ...)])`<br>
-`         (if (null? cmore)`<br>
-`             (syntax-case c1 (else =>)`<br>
-`               [(else e1 e2 ...) #'(begin e1 e2 ...)]`<br>
-`               [(e0) #'(let ([t e0]) (if t t))]`<br>
-`               [(e0 => e1) #'(let ([t e0]) (if t (e1 t)))]`<br>
-`               [(e0 e1 e2 ...) #'(if e0 (begin e1 e2 ...))])`<br>
-`             (with-syntax ([rest (f (car cmore) (cdr cmore))])`<br>
-`               (syntax-case c1 (=>)`<br>
-`                 [(e0) #'(let ([t e0]) (if t t rest))]`<br>
-`                 [(e0 => e1) #'(let ([t e0]) (if t (e1 t) rest))]`<br>
-`                 [(e0 e1 e2 ...)`<br>
+`(define-syntax cond`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ c1 c2 ...)`<br/>
+`       (let f ([c1 #'c1] [cmore #'(c2 ...)])`<br/>
+`         (if (null? cmore)`<br/>
+`             (syntax-case c1 (else =>)`<br/>
+`               [(else e1 e2 ...) #'(begin e1 e2 ...)]`<br/>
+`               [(e0) #'(let ([t e0]) (if t t))]`<br/>
+`               [(e0 => e1) #'(let ([t e0]) (if t (e1 t)))]`<br/>
+`               [(e0 e1 e2 ...) #'(if e0 (begin e1 e2 ...))])`<br/>
+`             (with-syntax ([rest (f (car cmore) (cdr cmore))])`<br/>
+`               (syntax-case c1 (=>)`<br/>
+`                 [(e0) #'(let ([t e0]) (if t t rest))]`<br/>
+`                 [(e0 => e1) #'(let ([t e0]) (if t (e1 t) rest))]`<br/>
+`                 [(e0 e1 e2 ...)`<br/>
 `                  #'(if e0 (begin e1 e2 ...) rest)]))))])))`
 
 **syntax**: `(quasisyntax template ...)` \
@@ -743,21 +743,21 @@ construct its output, using internal recursion in a manner similar to
 the definition of `cond` given under the description of `with-syntax`
 above.
 
-`` (define-syntax case``<br>
-``   (lambda (x)``<br>
-``     (syntax-case x ()``<br>
-``       [(_ e c1 c2 ...)``<br>
-``        #`(let ([t e])``<br>
-``            #,(let f ([c1 #'c1] [cmore #'(c2 ...)])``<br>
-``                (if (null? cmore)``<br>
-``                    (syntax-case c1 (else)``<br>
-``                      [(else e1 e2 ...) #'(begin e1 e2 ...)]``<br>
-``                      [((k ...) e1 e2 ...)``<br>
-``                       #'(if (memv t '(k ...)) (begin e1 e2 ...))])``<br>
-``                    (syntax-case c1 ()``<br>
-``                      [((k ...) e1 e2 ...)``<br>
-``                       #`(if (memv t '(k ...))``<br>
-``                             (begin e1 e2 ...)``<br>
+`` (define-syntax case``<br/>
+``   (lambda (x)``<br/>
+``     (syntax-case x ()``<br/>
+``       [(_ e c1 c2 ...)``<br/>
+``        #`(let ([t e])``<br/>
+``            #,(let f ([c1 #'c1] [cmore #'(c2 ...)])``<br/>
+``                (if (null? cmore)``<br/>
+``                    (syntax-case c1 (else)``<br/>
+``                      [(else e1 e2 ...) #'(begin e1 e2 ...)]``<br/>
+``                      [((k ...) e1 e2 ...)``<br/>
+``                       #'(if (memv t '(k ...)) (begin e1 e2 ...))])``<br/>
+``                    (syntax-case c1 ()``<br/>
+``                      [((k ...) e1 e2 ...)``<br/>
+``                       #`(if (memv t '(k ...))``<br/>
+``                             (begin e1 e2 ...)``<br/>
 ``                             #,(f (car cmore) (cdr cmore)))]))))]))) ``
 
 `unsyntax` and `unsyntax-splicing` forms that contain zero or more than
@@ -792,16 +792,16 @@ keyword, as if it were a variable to be assigned. This allows the
 programmer to control what happens when the keyword appears in such
 contexts. The argument, `procedure`, should accept one argument.
 
-`(let ([ls (list 0)])`<br>
-`  (define-syntax a`<br>
-`    (make-variable-transformer`<br>
-`      (lambda (x)`<br>
-`        (syntax-case x ()`<br>
-`          [id (identifier? #'id) #'(car ls)]`<br>
-`          [(set! _ e) #'(set-car! ls e)]`<br>
-`          [(_ e ...) #'((car ls) e ...)]))))`<br>
-`  (let ([before a])`<br>
-`    (set! a 1)`<br>
+`(let ([ls (list 0)])`<br/>
+`  (define-syntax a`<br/>
+`    (make-variable-transformer`<br/>
+`      (lambda (x)`<br/>
+`        (syntax-case x ()`<br/>
+`          [id (identifier? #'id) #'(car ls)]`<br/>
+`          [(set! _ e) #'(set-car! ls e)]`<br/>
+`          [(_ e ...) #'((car ls) e ...)]))))`<br/>
+`  (let ([before a])`<br/>
+`    (set! a 1)`<br/>
 `    (list before a ls))) `$\Rightarrow$` (0 1 (1))`
 
 This syntactic abstraction can be defined more succinctly using
@@ -811,21 +811,21 @@ perform arbitrary computations, while `identifier-syntax` is limited to
 simple term rewriting, like `syntax-rules`. `identifier-syntax` can be
 defined in terms of `make-variable-transformer`, as shown below.
 
-`(define-syntax identifier-syntax`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x (set!)`<br>
-`      [(_ e)`<br>
-`       #'(lambda (x)`<br>
-`           (syntax-case x ()`<br>
-`             [id (identifier? #'id) #'e]`<br>
-`             [(_ x (... ...)) #'(e x (... ...))]))]`<br>
-`      [(_ (id exp1) ((set! var val) exp2))`<br>
-`       (and (identifier? #'id) (identifier? #'var))`<br>
-`       #'(make-variable-transformer`<br>
-`           (lambda (x)`<br>
-`             (syntax-case x (set!)`<br>
-`               [(set! var val) #'exp2]`<br>
-`               [(id x (... ...)) #'(exp1 x (... ...))]`<br>
+`(define-syntax identifier-syntax`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x (set!)`<br/>
+`      [(_ e)`<br/>
+`       #'(lambda (x)`<br/>
+`           (syntax-case x ()`<br/>
+`             [id (identifier? #'id) #'e]`<br/>
+`             [(_ x (... ...)) #'(e x (... ...))]))]`<br/>
+`      [(_ (id exp1) ((set! var val) exp2))`<br/>
+`       (and (identifier? #'id) (identifier? #'var))`<br/>
+`       #'(make-variable-transformer`<br/>
+`           (lambda (x)`<br/>
+`             (syntax-case x (set!)`<br/>
+`               [(set! var val) #'exp2]`<br/>
+`               [(id x (... ...)) #'(exp1 x (... ...))]`<br/>
 `               [id (identifier? #'id) #'exp1])))])))`
 
 **procedure**: `(syntax->datum obj)` \
@@ -838,9 +838,9 @@ stripped in this manner are converted to their symbolic names, which can
 then be compared with `eq?`. Thus, a predicate `symbolic-identifier=?`
 might be defined as follows.
 
-`(define symbolic-identifier=?`<br>
-`  (lambda (x y)`<br>
-`    (eq? (syntax->datum x)`<br>
+`(define symbolic-identifier=?`<br/>
+`  (lambda (x y)`<br/>
+`    (eq? (syntax->datum x)`<br/>
 `         (syntax->datum y))))`
 
 Two identifiers that are `free-identifier=?` need not be
@@ -868,28 +868,28 @@ not appear explicitly in the input form. For example, we can define a
 `loop` expression that binds the variable `break` to an escape procedure
 within the loop body.
 
-`(define-syntax loop`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(k e ...)`<br>
-`       (with-syntax ([break (datum->syntax #'k 'break)])`<br>
-`         #'(call/cc`<br>
-`             (lambda (break)`<br>
-`               (let f () e ... (f)))))]))) `<br>
-`(let ([n 3] [ls '()])`<br>
-`  (loop`<br>
-`    (if (= n 0) (break ls))`<br>
-`    (set! ls (cons 'a ls))`<br>
+`(define-syntax loop`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(k e ...)`<br/>
+`       (with-syntax ([break (datum->syntax #'k 'break)])`<br/>
+`         #'(call/cc`<br/>
+`             (lambda (break)`<br/>
+`               (let f () e ... (f)))))]))) `<br/>
+`(let ([n 3] [ls '()])`<br/>
+`  (loop`<br/>
+`    (if (= n 0) (break ls))`<br/>
+`    (set! ls (cons 'a ls))`<br/>
 `    (set! n (- n 1)))) `$\Rightarrow$` (a a a)`
 
 Were we to define `loop` as
 
-`(define-syntax loop`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ e ...)`<br>
-`       #'(call/cc`<br>
-`           (lambda (break)`<br>
+`(define-syntax loop`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ e ...)`<br/>
+`       #'(call/cc`<br/>
+`           (lambda (break)`<br/>
 `             (let f () e ... (f))))])))`
 
 the variable `break` would not be visible in `e ...`.
@@ -897,19 +897,19 @@ the variable `break` would not be visible in `e ...`.
 It is also useful for `obj` to represent an arbitrary Scheme form, as
 demonstrated by the following definition of `include`.
 
-`(define-syntax include`<br>
-`  (lambda (x)`<br>
-`    (define read-file`<br>
-`      (lambda (fn k)`<br>
-`        (let ([p (open-input-file fn)])`<br>
-`          (let f ([x (read p)])`<br>
-`            (if (eof-object? x)`<br>
-`                (begin (close-port p) '())`<br>
-`                (cons (datum->syntax k x) (f (read p))))))))`<br>
-`    (syntax-case x ()`<br>
-`      [(k filename)`<br>
-`       (let ([fn (syntax->datum #'filename)])`<br>
-`         (with-syntax ([(expr ...) (read-file fn #'k)])`<br>
+`(define-syntax include`<br/>
+`  (lambda (x)`<br/>
+`    (define read-file`<br/>
+`      (lambda (fn k)`<br/>
+`        (let ([p (open-input-file fn)])`<br/>
+`          (let f ([x (read p)])`<br/>
+`            (if (eof-object? x)`<br/>
+`                (begin (close-port p) '())`<br/>
+`                (cons (datum->syntax k x) (f (read p))))))))`<br/>
+`    (syntax-case x ()`<br/>
+`      [(k filename)`<br/>
+`       (let ([fn (syntax->datum #'filename)])`<br/>
+`         (with-syntax ([(expr ...) (read-file fn #'k)])`<br/>
 `           #'(begin expr ...)))])))`
 
 `(include "filename")` expands into a `begin` expression containing the
@@ -917,8 +917,8 @@ forms found in the file named by `"filename"`. For example, if the file
 `f-def.ss` contains the expression `(define f (lambda () x))`, the
 expression
 
-`(let ([x "okay"])`<br>
-`  (include "f-def.ss")`<br>
+`(let ([x "okay"])`<br/>
+`  (include "f-def.ss")`<br/>
 `  (f))`
 
 evaluates to `"okay"`.
@@ -947,15 +947,15 @@ temporary is guaranteed to be different from all other identifiers.
 A definition of `letrec` that uses `generate-temporaries` is shown
 below.
 
-`(define-syntax letrec`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ ((i e) ...) b1 b2 ...)`<br>
-`       (with-syntax ([(t ...) (generate-temporaries #'(i ...))])`<br>
-`         #'(let ([i #f] ...)`<br>
-`             (let ([t e] ...)`<br>
-`               (set! i t)`<br>
-`               ...`<br>
+`(define-syntax letrec`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ ((i e) ...) b1 b2 ...)`<br/>
+`       (with-syntax ([(t ...) (generate-temporaries #'(i ...))])`<br/>
+`         #'(let ([i #f] ...)`<br/>
+`             (let ([t e] ...)`<br/>
+`               (set! i t)`<br/>
+`               ...`<br/>
 `               (let () b1 b2 ...))))])))`
 
 Any transformer that uses `generate-temporaries` in this fashion can be
@@ -966,24 +966,24 @@ temporaries have been generated. Here is a definition of `let-values`
 ([page 99]) that uses this technique to
 support multiple sets of bindings.
 
-`(define-syntax let-values`<br>
-`  (syntax-rules ()`<br>
-`    [(_ () f1 f2 ...) (let () f1 f2 ...)]`<br>
-`    [(_ ((fmls1 expr1) (fmls2 expr2) ...) f1 f2 ...)`<br>
-`     (lvhelp fmls1 () () expr1 ((fmls2 expr2) ...) (f1 f2 ...))])) `<br>
-`(define-syntax lvhelp`<br>
-`  (syntax-rules ()`<br>
-`    [(_ (x1 . fmls) (x ...) (t ...) e m b)`<br>
-`     (lvhelp fmls (x ... x1) (t ... tmp) e m b)]`<br>
-`    [(_ () (x ...) (t ...) e m b)`<br>
-`     (call-with-values`<br>
-`       (lambda () e)`<br>
-`       (lambda (t ...)`<br>
-`         (let-values m (let ([x t] ...) . b))))]`<br>
-`    [(_ xr (x ...) (t ...) e m b)`<br>
-`     (call-with-values`<br>
-`       (lambda () e)`<br>
-`       (lambda (t ... . tmpr)`<br>
+`(define-syntax let-values`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ () f1 f2 ...) (let () f1 f2 ...)]`<br/>
+`    [(_ ((fmls1 expr1) (fmls2 expr2) ...) f1 f2 ...)`<br/>
+`     (lvhelp fmls1 () () expr1 ((fmls2 expr2) ...) (f1 f2 ...))])) `<br/>
+`(define-syntax lvhelp`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ (x1 . fmls) (x ...) (t ...) e m b)`<br/>
+`     (lvhelp fmls (x ... x1) (t ... tmp) e m b)]`<br/>
+`    [(_ () (x ...) (t ...) e m b)`<br/>
+`     (call-with-values`<br/>
+`       (lambda () e)`<br/>
+`       (lambda (t ...)`<br/>
+`         (let-values m (let ([x t] ...) . b))))]`<br/>
+`    [(_ xr (x ...) (t ...) e m b)`<br/>
+`     (call-with-values`<br/>
+`       (lambda () e)`<br/>
+`       (lambda (t ... . tmpr)`<br/>
 `         (let-values m (let ([x t] ... [xr tmpr]) . b))))]))`
 
 The implementation of `lvhelp` is complicated by the need to evaluate
@@ -1003,34 +1003,34 @@ The simplest example in this section is the following definition of
 anonymous (not externally named) procedures to be created with minimal
 effort.
 
-`(define-syntax rec`<br>
-`  (syntax-rules ()`<br>
-`    [(_ x e) (letrec ([x e]) x)])) `<br>
-`(map (rec sum`<br>
-`       (lambda (x)`<br>
-`         (if (= x 0)`<br>
-`             0`<br>
-`             (+ x (sum (- x 1))))))`<br>
+`(define-syntax rec`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ x e) (letrec ([x e]) x)])) `<br/>
+`(map (rec sum`<br/>
+`       (lambda (x)`<br/>
+`         (if (= x 0)`<br/>
+`             0`<br/>
+`             (+ x (sum (- x 1))))))`<br/>
 `     '(0 1 2 3 4 5)) `$\Rightarrow$` (0 1 3 6 10 15)`
 
 Using `rec`, we can define the full `let` (both unnamed and named) as
 follows.
 
-`(define-syntax let`<br>
-`  (syntax-rules ()`<br>
-`    [(_ ((x e) ...) b1 b2 ...)`<br>
-`     ((lambda (x ...) b1 b2 ...) e ...)]`<br>
-`    [(_ f ((x e) ...) b1 b2 ...)`<br>
+`(define-syntax let`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ ((x e) ...) b1 b2 ...)`<br/>
+`     ((lambda (x ...) b1 b2 ...) e ...)]`<br/>
+`    [(_ f ((x e) ...) b1 b2 ...)`<br/>
 `     ((rec f (lambda (x ...) b1 b2 ...)) e ...)]))`
 
 We can also define `let` directly in terms of `letrec`, although the
 definition is a bit less clear.
 
-`(define-syntax let`<br>
-`  (syntax-rules ()`<br>
-`    [(_ ((x e) ...) b1 b2 ...)`<br>
-`     ((lambda (x ...) b1 b2 ...) e ...)]`<br>
-`    [(_ f ((x e) ...) b1 b2 ...)`<br>
+`(define-syntax let`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ ((x e) ...) b1 b2 ...)`<br/>
+`     ((lambda (x ...) b1 b2 ...) e ...)]`<br/>
+`    [(_ f ((x e) ...) b1 b2 ...)`<br/>
 `     ((letrec ([f (lambda (x ...) b1 b2 ...)]) f) e ...)]))`
 
 These definitions rely upon the fact that the first pattern cannot match
@@ -1038,24 +1038,24 @@ a named `let`, since the first subform of a named `let` must be an
 identifier, not a list of bindings. The following definition uses a
 fender to make this check more robust.
 
-`(define-syntax let`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ ((x e) ...) b1 b2 ...)`<br>
-`       #'((lambda (x ...) b1 b2 ...) e ...)]`<br>
-`      [(_ f ((x e) ...) b1 b2 ...)`<br>
-`       (identifier? #'f)`<br>
+`(define-syntax let`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ ((x e) ...) b1 b2 ...)`<br/>
+`       #'((lambda (x ...) b1 b2 ...) e ...)]`<br/>
+`      [(_ f ((x e) ...) b1 b2 ...)`<br/>
+`       (identifier? #'f)`<br/>
 `       #'((rec f (lambda (x ...) b1 b2 ...)) e ...)])))`
 
 With the fender, we can even put the clauses in the opposite order.
 
-`(define-syntax let`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ f ((x e) ...) b1 b2 ...)`<br>
-`       (identifier? #'f)`<br>
-`       #'((rec f (lambda (x ...) b1 b2 ...)) e ...)]`<br>
-`      [(_ ((x e) ...) b1 b2 ...)`<br>
+`(define-syntax let`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ f ((x e) ...) b1 b2 ...)`<br/>
+`       (identifier? #'f)`<br/>
+`       #'((rec f (lambda (x ...) b1 b2 ...)) e ...)]`<br/>
+`      [(_ ((x e) ...) b1 b2 ...)`<br/>
 `       #'((lambda (x ...) b1 b2 ...) e ...)])))`
 
 To be completely robust, the `ids?` and `unique-ids?` checks employed in
@@ -1070,19 +1070,19 @@ others take the form `(var val update)`. The following definition of
 `do` uses `syntax-case` internally to parse the bindings separately from
 the overall form.
 
-`(define-syntax do`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(_ (binding ...) (test res ...) expr ...)`<br>
-`       (with-syntax ([((var val update) ...)`<br>
-`                      (map (lambda (b)`<br>
-`                             (syntax-case b ()`<br>
-`                               [(var val) #'(var val var)]`<br>
-`                               [(var val update) #'(var val update)]))`<br>
-`                           #'(binding ...))])`<br>
-`         #'(let doloop ([var val] ...)`<br>
-`             (if test`<br>
-`                 (begin (if #f #f) res ...)`<br>
+`(define-syntax do`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ (binding ...) (test res ...) expr ...)`<br/>
+`       (with-syntax ([((var val update) ...)`<br/>
+`                      (map (lambda (b)`<br/>
+`                             (syntax-case b ()`<br/>
+`                               [(var val) #'(var val var)]`<br/>
+`                               [(var val update) #'(var val update)]))`<br/>
+`                           #'(binding ...))])`<br/>
+`         #'(let doloop ([var val] ...)`<br/>
+`             (if test`<br/>
+`                 (begin (if #f #f) res ...)`<br/>
 `                 (begin expr ... (doloop update ...)))))])))`
 
 The odd-looking expression `(if #f #f)` is inserted before the result
@@ -1101,19 +1101,19 @@ allows syntactic extensions to expand into syntax definitions containing
 ellipses. This usage is illustrated by the definition below of
 `be-like-begin`.
 
-`(define-syntax be-like-begin`<br>
-`  (syntax-rules ()`<br>
-`    [(_ name)`<br>
-`     (define-syntax name`<br>
-`       (syntax-rules ()`<br>
-`         [(_ e0 e1 (... ...))`<br>
+`(define-syntax be-like-begin`<br/>
+`  (syntax-rules ()`<br/>
+`    [(_ name)`<br/>
+`     (define-syntax name`<br/>
+`       (syntax-rules ()`<br/>
+`         [(_ e0 e1 (... ...))`<br/>
 `          (begin e0 e1 (... ...))]))]))`
 
 With `be-like-begin` defined in this manner, `(be-like-begin sequence)`
 has the same effect as the following definition of `sequence`.
 
-`(define-syntax sequence`<br>
-`  (syntax-rules ()`<br>
+`(define-syntax sequence`<br/>
+`  (syntax-rules ()`<br/>
 `    [(_ e0 e1 ...) (begin e0 e1 ...)]))`
 
 That is, a `sequence` form becomes equivalent to a `begin` form so that,
@@ -1129,18 +1129,18 @@ subexpression by defining a local `if` in terms of the built-in `if`.
 Within the body of the `let-syntax` binding below, two-armed `if` works
 as always:
 
-`(let-syntax ([if (lambda (x)`<br>
-`                   (syntax-case x ()`<br>
-`                     [(_ e1 e2 e3)`<br>
-`                      #'(if e1 e2 e3)]))])`<br>
+`(let-syntax ([if (lambda (x)`<br/>
+`                   (syntax-case x ()`<br/>
+`                     [(_ e1 e2 e3)`<br/>
+`                      #'(if e1 e2 e3)]))])`<br/>
 `  (if (< 1 5) 2 3)) `$\Rightarrow$` 2`
 
 but one-armed if results in a syntax error.
 
-`(let-syntax ([if (lambda (x)`<br>
-`                   (syntax-case x ()`<br>
-`                     [(_ e1 e2 e3)`<br>
-`                      #'(if e1 e2 e3)]))])`<br>
+`(let-syntax ([if (lambda (x)`<br/>
+`                   (syntax-case x ()`<br/>
+`                     [(_ e1 e2 e3)`<br/>
+`                      #'(if e1 e2 e3)]))])`<br/>
 `  (if (< 1 5) 2)) `$\Rightarrow$` syntax violation`
 
 Although this local definition of `if` looks simple enough, there are a
@@ -1173,10 +1173,10 @@ the "closest enclosing lexical binding" for an identifier inserted into
 the output of a transformer does not also enclose the input form. For
 example,
 
-`(let-syntax ([divide (lambda (x)`<br>
-`                       (let ([/ +])`<br>
-`                         (syntax-case x ()`<br>
-`                           [(_ e1 e2) #'(/ e1 e2)])))])`<br>
+`(let-syntax ([divide (lambda (x)`<br/>
+`                       (let ([/ +])`<br/>
+`                         (syntax-case x ()`<br/>
+`                           [(_ e1 e2) #'(/ e1 e2)])))])`<br/>
 `  (let ([/ *]) (divide 2 1)))`
 
 should result in a syntax violation with a message to the effect
@@ -1189,18 +1189,18 @@ The next example defines a `define-integrable` form that is similar to
 the procedure to be *integrated*, or inserted, wherever a direct call to
 the procedure is found.
 
-`(define-syntax define-integrable`<br>
-`  (syntax-rules (lambda)`<br>
-`    [(_ name (lambda formals form1 form2 ...))`<br>
-`     (begin`<br>
-`       (define xname (lambda formals form1 form2 ...))`<br>
-`       (define-syntax name`<br>
-`         (lambda (x)`<br>
-`           (syntax-case x ()`<br>
-`             [_ (identifier? x) #'xname]`<br>
-`             [(_ arg (... ...))`<br>
-`              #'((lambda formals form1 form2 ...)`<br>
-`                 arg`<br>
+`(define-syntax define-integrable`<br/>
+`  (syntax-rules (lambda)`<br/>
+`    [(_ name (lambda formals form1 form2 ...))`<br/>
+`     (begin`<br/>
+`       (define xname (lambda formals form1 form2 ...))`<br/>
+`       (define-syntax name`<br/>
+`         (lambda (x)`<br/>
+`           (syntax-case x ()`<br/>
+`             [_ (identifier? x) #'xname]`<br/>
+`             [(_ arg (... ...))`<br/>
+`              #'((lambda formals form1 form2 ...)`<br/>
+`                 arg`<br/>
 `                 (... ...))]))))]))`
 
 The form `(define-integrable name lambda-expression)` expands into a
@@ -1227,20 +1227,20 @@ time. A solution to this problem for directly recursive procedures is to
 wrap each occurrence of the `lambda` expression with a `let-syntax`
 binding that unconditionally expands `name` to `xname`.
 
-`(define-syntax define-integrable`<br>
-`  (syntax-rules (lambda)`<br>
-`    [(_ name (lambda formals form1 form2 ...))`<br>
-`     (begin`<br>
-`       (define xname`<br>
-`         (let-syntax ([name (identifier-syntax xname)])`<br>
-`           (lambda formals form1 form2 ...)))`<br>
-`       (define-syntax name`<br>
-`         (lambda (x)`<br>
-`           (syntax-case x ()`<br>
-`             [_ (identifier? x) #'xname]`<br>
-`             [(_ arg (... ...))`<br>
-`              #'((let-syntax ([name (identifier-syntax xname)])`<br>
-`                   (lambda formals form1 form2 ...))`<br>
+`(define-syntax define-integrable`<br/>
+`  (syntax-rules (lambda)`<br/>
+`    [(_ name (lambda formals form1 form2 ...))`<br/>
+`     (begin`<br/>
+`       (define xname`<br/>
+`         (let-syntax ([name (identifier-syntax xname)])`<br/>
+`           (lambda formals form1 form2 ...)))`<br/>
+`       (define-syntax name`<br/>
+`         (lambda (x)`<br/>
+`           (syntax-case x ()`<br/>
+`             [_ (identifier? x) #'xname]`<br/>
+`             [(_ arg (... ...))`<br/>
+`              #'((let-syntax ([name (identifier-syntax xname)])`<br/>
+`                   (lambda formals form1 form2 ...))`<br/>
 `                  arg (... ...))]))))]))`
 
 This problem can be solved for mutually recursive procedures by
@@ -1255,11 +1255,11 @@ example given in the description for `identifier?`. In other situations,
 both cases must be treated the same. The form `identifier-syntax` can
 make doing so more convenient.
 
-`(let ([x 0])`<br>
-`  (define-syntax x++`<br>
-`    (identifier-syntax`<br>
-`      (let ([t x])`<br>
-`        (set! x (+ t 1)) t)))`<br>
+`(let ([x 0])`<br/>
+`  (define-syntax x++`<br/>
+`    (identifier-syntax`<br/>
+`      (let ([t x])`<br/>
+`        (set! x (+ t 1)) t)))`<br/>
 `  (let ([a x++]) (list a x))) `$\Rightarrow$` (0 1)`
 
 The following example uses `identifier-syntax`, `datum->syntax`, and
@@ -1276,26 +1276,26 @@ bound to the formal parameters. The fields of the object may be accessed
 or altered within the method body via instance variable references or
 assignments.
 
-`(define-syntax method`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(k (ivar ...) formals b1 b2 ...)`<br>
-`       (with-syntax ([(index ...)`<br>
-`                      (let f ([i 0] [ls #'(ivar ...)])`<br>
-`                        (if (null? ls)`<br>
-`                            '()`<br>
-`                            (cons i (f (+ i 1) (cdr ls)))))]`<br>
-`                     [self (datum->syntax #'k 'self)]`<br>
-`                     [set! (datum->syntax #'k 'set!)])`<br>
-`         #'(lambda (self . formals)`<br>
-`             (let-syntax ([ivar (identifier-syntax`<br>
-`                                  (vector-ref self index))]`<br>
-`                          ...)`<br>
-`               (let-syntax ([set!`<br>
-`                             (syntax-rules (ivar ...)`<br>
-`                               [(_ ivar e) (vector-set! self index e)]`<br>
-`                               ...`<br>
-`                               [(_ x e) (set! x e)])])`<br>
+`(define-syntax method`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(k (ivar ...) formals b1 b2 ...)`<br/>
+`       (with-syntax ([(index ...)`<br/>
+`                      (let f ([i 0] [ls #'(ivar ...)])`<br/>
+`                        (if (null? ls)`<br/>
+`                            '()`<br/>
+`                            (cons i (f (+ i 1) (cdr ls)))))]`<br/>
+`                     [self (datum->syntax #'k 'self)]`<br/>
+`                     [set! (datum->syntax #'k 'set!)])`<br/>
+`         #'(lambda (self . formals)`<br/>
+`             (let-syntax ([ivar (identifier-syntax`<br/>
+`                                  (vector-ref self index))]`<br/>
+`                          ...)`<br/>
+`               (let-syntax ([set!`<br/>
+`                             (syntax-rules (ivar ...)`<br/>
+`                               [(_ ivar e) (vector-set! self index e)]`<br/>
+`                               ...`<br/>
+`                               [(_ x e) (set! x e)])])`<br/>
 `                 b1 b2 ...))))])))`
 
 Local bindings for `ivar ...` and for `set!` make the fields of the
@@ -1309,32 +1309,32 @@ version of `set!` are scoped properly.
 By using the general form of `identifier-syntax` to handle `set!` forms
 more directly, we can simplify the definition of `method`.
 
-`(define-syntax method`<br>
-`  (lambda (x)`<br>
-`    (syntax-case x ()`<br>
-`      [(k (ivar ...) formals b1 b2 ...)`<br>
-`       (with-syntax ([(index ...)`<br>
-`                      (let f ([i 0] [ls #'(ivar ...)])`<br>
-`                        (if (null? ls)`<br>
-`                            '()`<br>
-`                            (cons i (f (+ i 1) (cdr ls)))))]`<br>
-`                     [self (datum->syntax #'k 'self)])`<br>
-`         #'(lambda (self . formals)`<br>
-`             (let-syntax ([ivar (identifier-syntax`<br>
-`                                  [_ (vector-ref self index)]`<br>
-`                                  [(set! _ e)`<br>
-`                                   (vector-set! self index e)])]`<br>
-`                          ...)`<br>
+`(define-syntax method`<br/>
+`  (lambda (x)`<br/>
+`    (syntax-case x ()`<br/>
+`      [(k (ivar ...) formals b1 b2 ...)`<br/>
+`       (with-syntax ([(index ...)`<br/>
+`                      (let f ([i 0] [ls #'(ivar ...)])`<br/>
+`                        (if (null? ls)`<br/>
+`                            '()`<br/>
+`                            (cons i (f (+ i 1) (cdr ls)))))]`<br/>
+`                     [self (datum->syntax #'k 'self)])`<br/>
+`         #'(lambda (self . formals)`<br/>
+`             (let-syntax ([ivar (identifier-syntax`<br/>
+`                                  [_ (vector-ref self index)]`<br/>
+`                                  [(set! _ e)`<br/>
+`                                   (vector-set! self index e)])]`<br/>
+`                          ...)`<br/>
 `               b1 b2 ...)))])))`
 
 The examples below demonstrate simple uses of `method`.
 
-`(let ([m (method (a) (x) (list a x self))])`<br>
-`  (m #(1) 2)) `$\Rightarrow$` (1 2 #(1)) `<br>
-`(let ([m (method (a) (x)`<br>
-`           (set! a x)`<br>
-`           (set! x (+ a x))`<br>
-`           (list a x self))])`<br>
+`(let ([m (method (a) (x) (list a x self))])`<br/>
+`  (m #(1) 2)) `$\Rightarrow$` (1 2 #(1)) `<br/>
+`(let ([m (method (a) (x)`<br/>
+`           (set! a x)`<br/>
+`           (set! x (+ a x))`<br/>
+`           (list a x self))])`<br/>
 `  (m #(1) 2)) `$\Rightarrow$` (2 4 #(2))`
 
 In a complete OOP system based on `method`, the instance variables
@@ -1354,51 +1354,51 @@ where `name` names the structure and `field ...` names its fields.
 constructor `make-name`, a type predicate `name?`, and one accessor
 `name-field` and setter `set-name-field!` per field name.
 
-`(define-syntax define-structure`<br>
-`  (lambda (x)`<br>
-`    (define gen-id`<br>
-`      (lambda (template-id . args)`<br>
-`        (datum->syntax template-id`<br>
-`          (string->symbol`<br>
-`            (apply string-append`<br>
-`              (map (lambda (x)`<br>
-`                     (if (string? x)`<br>
-`                         x`<br>
-`                         (symbol->string (syntax->datum x))))`<br>
-`                   args))))))`<br>
-`    (syntax-case x ()`<br>
-`      [(_ name field ...)`<br>
-`       (with-syntax ([constructor (gen-id #'name "make-" #'name)]`<br>
-`                     [predicate (gen-id #'name #'name "?")]`<br>
-`                     [(access ...)`<br>
-`                      (map (lambda (x) (gen-id x #'name "-" x))`<br>
-`                           #'(field ...))]`<br>
-`                     [(assign ...)`<br>
-`                      (map (lambda (x)`<br>
-`                             (gen-id x "set-" #'name "-" x "!"))`<br>
-`                           #'(field ...))]`<br>
-`                     [structure-length (+ (length #'(field ...)) 1)]`<br>
-`                     [(index ...)`<br>
-`                      (let f ([i 1] [ids #'(field ...)])`<br>
-`                        (if (null? ids)`<br>
-`                            '()`<br>
-`                            (cons i (f (+ i 1) (cdr ids)))))])`<br>
-`         #'(begin`<br>
-`             (define constructor`<br>
-`               (lambda (field ...)`<br>
-`                 (vector 'name field ...)))`<br>
-`             (define predicate`<br>
-`               (lambda (x)`<br>
-`                 (and (vector? x)`<br>
-`                      (= (vector-length x) structure-length)`<br>
-`                      (eq? (vector-ref x 0) 'name))))`<br>
-`             (define access`<br>
-`               (lambda (x)`<br>
-`                 (vector-ref x index)))`<br>
-`             ...`<br>
-`             (define assign`<br>
-`               (lambda (x update)`<br>
-`                 (vector-set! x index update)))`<br>
+`(define-syntax define-structure`<br/>
+`  (lambda (x)`<br/>
+`    (define gen-id`<br/>
+`      (lambda (template-id . args)`<br/>
+`        (datum->syntax template-id`<br/>
+`          (string->symbol`<br/>
+`            (apply string-append`<br/>
+`              (map (lambda (x)`<br/>
+`                     (if (string? x)`<br/>
+`                         x`<br/>
+`                         (symbol->string (syntax->datum x))))`<br/>
+`                   args))))))`<br/>
+`    (syntax-case x ()`<br/>
+`      [(_ name field ...)`<br/>
+`       (with-syntax ([constructor (gen-id #'name "make-" #'name)]`<br/>
+`                     [predicate (gen-id #'name #'name "?")]`<br/>
+`                     [(access ...)`<br/>
+`                      (map (lambda (x) (gen-id x #'name "-" x))`<br/>
+`                           #'(field ...))]`<br/>
+`                     [(assign ...)`<br/>
+`                      (map (lambda (x)`<br/>
+`                             (gen-id x "set-" #'name "-" x "!"))`<br/>
+`                           #'(field ...))]`<br/>
+`                     [structure-length (+ (length #'(field ...)) 1)]`<br/>
+`                     [(index ...)`<br/>
+`                      (let f ([i 1] [ids #'(field ...)])`<br/>
+`                        (if (null? ids)`<br/>
+`                            '()`<br/>
+`                            (cons i (f (+ i 1) (cdr ids)))))])`<br/>
+`         #'(begin`<br/>
+`             (define constructor`<br/>
+`               (lambda (field ...)`<br/>
+`                 (vector 'name field ...)))`<br/>
+`             (define predicate`<br/>
+`               (lambda (x)`<br/>
+`                 (and (vector? x)`<br/>
+`                      (= (vector-length x) structure-length)`<br/>
+`                      (eq? (vector-ref x 0) 'name))))`<br/>
+`             (define access`<br/>
+`               (lambda (x)`<br/>
+`                 (vector-ref x index)))`<br/>
+`             ...`<br/>
+`             (define assign`<br/>
+`               (lambda (x update)`<br/>
+`                 (vector-set! x index update)))`<br/>
 `             ...))])))`
 
 The constructor accepts as many arguments as there are fields in the
@@ -1416,14 +1416,14 @@ identifiers to be visible where the `define-structure` form appears.
 
 The examples below demonstrate the use of `define-structure`.
 
-`(define-structure tree left right)`<br>
-`(define t`<br>
-`  (make-tree`<br>
-`    (make-tree 0 1)`<br>
-`    (make-tree 2 3))) `<br>
-`t `$\Rightarrow$` #(tree #(tree 0 1) #(tree 2 3))`<br>
-`(tree? t) `$\Rightarrow$` #t`<br>
-`(tree-left t) `$\Rightarrow$` #(tree 0 1)`<br>
-`(tree-right t) `$\Rightarrow$` #(tree 2 3)`<br>
-`(set-tree-left! t 0)`<br>
+`(define-structure tree left right)`<br/>
+`(define t`<br/>
+`  (make-tree`<br/>
+`    (make-tree 0 1)`<br/>
+`    (make-tree 2 3))) `<br/>
+`t `$\Rightarrow$` #(tree #(tree 0 1) #(tree 2 3))`<br/>
+`(tree? t) `$\Rightarrow$` #t`<br/>
+`(tree-left t) `$\Rightarrow$` #(tree 0 1)`<br/>
+`(tree-right t) `$\Rightarrow$` #(tree 2 3)`<br/>
+`(set-tree-left! t 0)`<br/>
 `t `$\Rightarrow$` #(tree 0 #(tree 2 3))`

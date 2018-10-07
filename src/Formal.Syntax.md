@@ -282,13 +282,13 @@ The abbreviations are equivalent to the corresponding two-element lists
 shown below. Once an abbreviation has been read, the result is
 indistinguishable from its nonabbreviated form.
 
-`` '<datum>  (quote <datum>)``<br>
-`` `<datum>  (quasiquote <datum>)``<br>
-`` ,<datum>  (unquote <datum>)``<br>
-`` ,@<datum>  (unquote-splicing <datum>)``<br>
-`` #'<datum>  (syntax <datum>)``<br>
-`` #`<datum>  (quasisyntax <datum>)``<br>
-`` #,<datum>  (unsyntax <datum>)``<br>
+`` '<datum>  (quote <datum>)``<br/>
+`` `<datum>  (quasiquote <datum>)``<br/>
+`` ,<datum>  (unquote <datum>)``<br/>
+`` ,@<datum>  (unquote-splicing <datum>)``<br/>
+`` #'<datum>  (syntax <datum>)``<br/>
+`` #`<datum>  (quasisyntax <datum>)``<br/>
+`` #,<datum>  (unsyntax <datum>)``<br/>
 `` #,@<datum>  (unsyntax-splicing <datum>) ``
 
 **Vectors.**  Vectors are compound datums formed from groups of tokens

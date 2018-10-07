@@ -1,6 +1,3 @@
-% The Scheme Programming Language
-% R. Kent Dybvig
-
 The Scheme Programming Language
 
 Fourth Edition
